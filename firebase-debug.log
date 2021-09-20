@@ -1,0 +1,28 @@
+[debug] [2021-09-20T22:59:50.378Z] ----------------------------------------------------------------------
+[debug] [2021-09-20T22:59:50.381Z] Command:       C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2021-09-20T22:59:50.381Z] CLI Version:   9.18.0
+[debug] [2021-09-20T22:59:50.382Z] Platform:      win32
+[debug] [2021-09-20T22:59:50.382Z] Node Version:  v16.6.0
+[debug] [2021-09-20T22:59:50.383Z] Time:          Tue Sep 21 2021 00:59:50 GMT+0200 (Central European Summer Time)
+[debug] [2021-09-20T22:59:50.383Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-09-20T22:59:50.398Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2021-09-20T22:59:50.449Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-09-20T22:59:50.449Z] > authorizing via signed-in user (inimicalpart@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\coding\projects\website
+
+Before we get started, keep in mind:
+
+  * You are currently outside your home directory
+
+[debug] [2021-09-20T22:59:50.895Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2021-09-20T22:59:50.895Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
