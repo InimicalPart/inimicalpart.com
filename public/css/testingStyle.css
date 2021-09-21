@@ -1,0 +1,18 @@
+body {
+  background-color: black;
+  display: flex;
+}
+/* make gradient div in center*/
+
+.gradient {
+  display: block;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10vh;
+  l: #ff0000, #00ff00;
+}
+.gradient img {
+  width: 100px;
+  height: 100px;
+}
