@@ -186,7 +186,7 @@ let timer = setInterval(() => {
       timeLeftS =
         "" +
         (nextBirthday(new Date(unixAge)) - new Date()) /
-          (1000 * 60 * 60 * 24 * 30);
+          (1000 * 60 * 60 * 24 * 30.417);
       temp = timeLeftS.split(".");
       temp[1] = String(temp[1]).substring(0, 8).padEnd(8, "0");
       if (temp[1] === undefined) {
