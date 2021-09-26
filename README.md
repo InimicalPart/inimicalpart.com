@@ -1,2 +1,2 @@
 # inimicalpart.com
-This repository is for my website inimicalpart.com (soon)
+This repository is for my website inimicalpart.com
