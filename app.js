@@ -1,25 +1,33 @@
-var express = require('express');
-var bodyParser = require('body-parser');
 var path = require('path');
-const helmet = require("helmet");
+// const helmet = require("helmet");
+// var cookieParser = require('cookie-parser')
+// var csrf = require('csurf')
+// var bodyParser = require('body-parser')
+// var express = require('express')
 
-const app = express();
+// // setup route middlewares
+// var csrfProtection = csrf({ cookie: true })
+// var parseForm = bodyParser.urlencoded({ extended: false })
 
-app.use(helmet());
+// // create express app
+// var app = express()
 
-app.use(express.static(__dirname + '/public'));
-app.use(bodyParser.urlencoded({ extended: true }));
-var RateLimit = require('express-rate-limit');
-var limiter = new RateLimit({
-  windowMs: 1*60*1000, // 1 minute
-  max: 20
-});
+// // parse cookies
+// // we need this because "cookie" is true in csrfProtection
+// app.use(cookieParser())
 
-// apply rate limiter to all requests
-app.use(limiter);
-app.listen(7380, () => console.log('listening on 7380'))
+// app.use(helmet());
 
-app.get("/img/years.png")
+// app.use(express.static(__dirname + '/public'));
+// app.use(bodyParser.urlencoded({ extended: true }));
+// var RateLimit = require('express-rate-limit');
+// var limiter = new RateLimit({
+//   windowMs: 1*60*1000, // 1 minute
+//   max: 20
+// });
+
+// // apply rate limiter to all requests
+// app.use(limiter);
 function nextBirthday(date, a) {
 	let thisYearBd = new Date(
 	  date.getMonth() +
