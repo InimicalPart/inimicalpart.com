@@ -40,6 +40,29 @@ function isRealEvent(e) {
 }
 var modeWas = null;
 function setup() {
+  $("#showNextBD").on("mouseover", function (event) {
+    $("#showNextBD").css("background-color", "#4d4d4d");
+  })
+  $("#showNextBD").on("mouseout", function (event) {
+    if ($("#nextBD").css("visibility") === "hidden") {
+      $("#showNextBD").css("background-color", "black");
+    } else {
+      $("#showNextBD").css("background-color", "lightgray");
+    }
+  })
+  $("#showNextBD").on("click", function (event) {
+    if (isRealEvent(event)) {
+      if ($("#nextBD").css("visibility") === "hidden") {
+        $("#nextBD").css("visibility", "visible");
+        $("#showNextBD").css("background-color", "lightgray")
+      } else {
+        $("#nextBD").css("visibility", "hidden");
+        $("#showNextBD").css("background-color", "black")
+      }
+    }
+  })
+
+
   $("#pfpimg").on("dragstart", function (event) {
     event.preventDefault();
   });
@@ -199,7 +222,7 @@ let timer = setInterval(() => {
     if (timeLeftS !== "error") {
       willBeAge.innerHTML = "<b>" + (yearsNow + 1) + "</b>";
       willBeAgeInSec.innerHTML = "<b>" + timeLeftS + "</b>";
-      // document.getElementById("nextBDD").innerHTML = "<b>" + new Date(nextBirthday(new Date(unixAge))) + "</b>";
+      document.getElementById("nextBDD").innerHTML = "<b>" + new Date(nextBirthday(new Date(unixAge))).toString().replace(/\(.*\)/g, "") + "</b>";
     } else {
       document.getElementById("iniUntil").innerHTML =
         "<b>😢 y u break it man, i spend multiple hours on dis.</b>";
