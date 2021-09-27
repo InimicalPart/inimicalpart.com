@@ -1,7 +1,11 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
-var app = express();
+const helmet = require("helmet");
+
+const app = express();
+
+app.use(helmet());
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({ extended: true }));
