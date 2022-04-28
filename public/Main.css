@@ -1,0 +1,163 @@
+body {
+  background-color: #121212;
+}
+a,
+b,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span {
+  color: #fff;
+}
+
+.no-visit,
+.no-visit:visited,
+.no-visit:hover,
+.no-visit:active {
+  color: inherit;
+}
+
+.skillBox {
+  border: 1px solid #fff;
+  height: 130px;
+  width: 130px;
+  border-radius: 8px;
+  background-size: 80px 100px;
+  /* no repeat*/
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: border-color 0.2s ease-in-out;
+}
+.skillBox:hover {
+  cursor: pointer;
+}
+.reactBox {
+  background-size: 100px 90px;
+}
+.nodejsBox {
+  background-size: 80px 90px;
+}
+@media screen and (max-width: 850px) {
+  .skillBox {
+    height: 6rem;
+    width: 6rem;
+    background-size: 5.5rem 5.5rem;
+  }
+}
+@media screen and (max-width: 600px) {
+  .skillBox {
+    height: 4rem;
+    width: 4rem;
+    background-size: 3.5rem 3.5rem;
+  }
+}
+@media screen and (max-width: 500px) {
+  .skillBox {
+    height: 3.5rem;
+    width: 3.5rem;
+    background-size: 2rem 2.5rem;
+  }
+  .reactBox {
+    background-size: 2.75rem 2.5rem;
+  }
+  .nodejsBox {
+    background-size: 2.25rem 2.5rem;
+  }
+}
+
+.htmlBox {
+  background-image: url("img/html.png");
+}
+.htmlBox:hover {
+  /*draw the new color on the border for 5s*/
+  border-color: #f16529;
+}
+.cssBox {
+  background-image: url("img/css.png");
+}
+.cssBox:hover {
+  border-color: #2965f1;
+}
+.jsBox {
+  background-image: url("img/js.png");
+}
+.jsBox:hover {
+  border-color: #f0be25;
+}
+.nodejsBox {
+  background-image: url("img/nodejs.png");
+}
+.nodejsBox:hover {
+  border-color: #56a34e;
+}
+.reactBox {
+  background-image: url("img/react.png");
+}
+.reactBox:hover {
+  border-color: #61dafb;
+}
+
+.SkillBoxContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.start {
+  margin-right: 10px;
+}
+.middle {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.end {
+  margin-left: 10px;
+}
+/* skillTextBox consists of 5 boxes in a div which is .skillsTextContainer. I want the 5 boxes to overlap */
+.skillsTextContainer {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.skillTextBox {
+    border-radius: 6px;
+    position:fixed;
+    top:20px;
+  width: 80vw;
+  height: 80vh;
+  border: 1px solid #fff;
+  /* display: flex; */
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  display: none;
+  background-color: #222222;
+}
+.HSB {
+  border: 1px solid #f16529;
+}
+.CSB {
+  border: 1px solid #2965f1;
+}
+.JSB {
+  border: 1px solid #f0be25;
+}
+.NJSB {
+  border: 1px solid #56a34e;
+}
+.RSB {
+  border: 1px solid #61dafb;
+}
+
+.closeX {
+    cursor: pointer;
+}
