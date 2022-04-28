@@ -459,7 +459,11 @@ class WIID extends React.Component {
           }
 
           document.getElementById("WIID_TAG").innerHTML =
-            "<b>" + data.user.username + "#" + data.user.discriminator + "</b>";
+            "<b>" +
+            escapeHTML(data.user.username) +
+            "#" +
+            escapeHTML(data.user.discriminator) +
+            "</b>";
           //status 1: 107 + getTextWidth(document.getElementById("WIID_TAG").innerText, getCanvasFontSize(document.getElementById("WIID_TAG"))) + 15
           //status 2: status 1 + 26 px offset
           //status 3: status 2 + 26 px offset
@@ -630,13 +634,9 @@ class WIID extends React.Component {
               titleText = titleText + "...";
             }
             document.getElementById("WIID_TITLE").innerHTML =
-              "<b>" + titleText + "</b>";
+              "<b>" + escapeHTML(titleText) + "</b>";
             if (titleHoverForFull)
               document.getElementById("WIID_TITLE").dataset.tip = fullTitleText;
-            // document.getElementById("WIID_DETAILS").innerHTML =
-            //   data.activity.activity_data.details +
-            //   "<br>" +
-            //   data.activity.activity_data.state;
             if (
               data.activity.activity_data.state &&
               data.activity.activity_data.details
@@ -806,7 +806,7 @@ class WIID extends React.Component {
                 time = time.join(":");
 
                 document.getElementById("WIID_TIMESTAMP").innerHTML =
-                  "<b>" + time + "</b> elapsed";
+                  "<b>" + escapeHTML(time) + "</b> elapsed";
               } else if (data.activity.activity_data.timestamps.end) {
                 let time = prettyMilliseconds(
                   Math.abs(
@@ -828,7 +828,7 @@ class WIID extends React.Component {
                 time = time.join(":");
 
                 document.getElementById("WIID_TIMESTAMP").innerHTML =
-                  "<b>" + time + "</b> remaining";
+                  "<b>" + escapeHTML(time) + "</b> remaining";
               }
               document.getElementById("WIID_TIMESTAMP").style.visibility =
                 "visible";
@@ -868,7 +868,7 @@ class WIID extends React.Component {
             document.getElementById("WIID_LARGE_IMG").dataset.tip =
               data.activity.external_data.song.name;
             document.getElementById("WIID_TITLE").innerHTML =
-              "<b>" + data.activity.activity_data.name + "</b>";
+              "<b>" + escapeHTML(data.activity.activity_data.name) + "</b>";
             document.getElementById("WIID_STATE").style.visibility = "visible";
             document.getElementById("WIID_DETAILS").style.visibility =
               "visible";
