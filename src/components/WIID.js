@@ -7,6 +7,15 @@ function padZeros(num, size) {
   while (s.length < size) s = "0" + s;
   return s;
 }
+String.prototype.escapeHTML = function () {
+  return this.replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\?/g, "&#63;")
+    .replace(/\//g, "&#47;")
+    .replace(/\"/g, "&quot;")
+    .replace(/\'/g, "&#39;");
+};
 let imgs = importAll(require.context("../img", false, /\.(png|jpe?g|svg)$/));
 function importAll(r) {
   let images = {};
@@ -662,7 +671,8 @@ class WIID extends React.Component {
                 }
                 stateText = stateText + "...";
               }
-              document.getElementById("WIID_STATE").innerHTML = stateText;
+              document.getElementById("WIID_STATE").innerHTML =
+                stateText.escapeHTML();
               if (stateHoverForFull)
                 document.getElementById("WIID_STATE").dataset.tip =
                   fullStateText;
@@ -691,7 +701,8 @@ class WIID extends React.Component {
                 }
                 detailsText = detailsText + "...";
               }
-              document.getElementById("WIID_DETAILS").innerHTML = detailsText;
+              document.getElementById("WIID_DETAILS").innerHTML =
+                detailsText.escapeHTML();
               if (detailsHoverForFull)
                 document.getElementById("WIID_DETAILS").dataset.tip =
                   fullDetailsText;
@@ -728,7 +739,8 @@ class WIID extends React.Component {
                   }
                   stateText = stateText + "...";
                 }
-                document.getElementById("WIID_STATE").innerHTML = stateText;
+                document.getElementById("WIID_STATE").innerHTML =
+                  stateText.escapeHTML();
                 if (stateHoverForFull)
                   document.getElementById("WIID_STATE").dataset.tip =
                     fullStateText;
@@ -758,7 +770,8 @@ class WIID extends React.Component {
                   }
                   detailsText = detailsText + "...";
                 }
-                document.getElementById("WIID_DETAILS").innerHTML = detailsText;
+                document.getElementById("WIID_DETAILS").innerHTML =
+                  detailsText.escapeHTML();
                 if (detailsHoverForFull)
                   document.getElementById("WIID_DETAILS").dataset.tip =
                     fullDetailsText;
@@ -879,7 +892,8 @@ class WIID extends React.Component {
               }
               stateText = stateText + "...";
             }
-            document.getElementById("WIID_STATE").innerHTML = stateText;
+            document.getElementById("WIID_STATE").innerHTML =
+              stateText.escapeHTML();
             if (stateHoverForFull)
               document.getElementById("WIID_STATE").dataset.tip = fullStateText;
             else document.getElementById("WIID_STATE").dataset.tip = "";
@@ -904,7 +918,8 @@ class WIID extends React.Component {
               }
               detailsText = detailsText + "...";
             }
-            document.getElementById("WIID_DETAILS").innerHTML = detailsText;
+            document.getElementById("WIID_DETAILS").innerHTML =
+              detailsText.escapeHTML();
             if (detailsHoverForFull)
               document.getElementById("WIID_DETAILS").dataset.tip =
                 fullDetailsText;
