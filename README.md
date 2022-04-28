@@ -10,4 +10,4 @@
 - Add a footer
 - Fill skill boxes with information (mobile-friendly)
 
-> _Contact me on me@inimicalpart.com if you require assistance or have questions._
+> _Contact me on me@inimicalpart.com if you require assistance or have any questions._
