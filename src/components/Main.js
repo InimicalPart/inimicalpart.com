@@ -1,28 +1,10 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import Type from "./type.js";
+// import Type from "./type.js";
 import Years from "./realtime/years.js";
 import ReactTooltip from "react-tooltip";
 import $ from "jquery";
-let checkNeeded = false;
-{
-  /* <Years textColor="#bdbdbd" boldTextColor="white" fontSize="1.25em" />
-
-        <NextBD
-          textColor="#bdbdbd"
-          boldTextColor="white"
-          clickColor="lightgray"
-          fontSize="1.25em"
-        /> */
-}
-{
-  /* <Type
-          styleText={{
-            fontSize: "1.25em",
-          }}
-          styleCursor={{}}
-        /> */
-}
+// let checkNeeded = false;
 class Main extends React.Component {
   render() {
     return (
@@ -150,6 +132,17 @@ class Main extends React.Component {
               className="closeX bi bi-x-lg"
               onClick={this.handleClick}
             ></i>
+            <p></p>
+            <div id="projects" style={{ marginTop: "10px" }}>
+              <div style={{ color: "white" }}>
+                <b>Projects</b>
+              </div>
+              <div id="project1" style={{ fontSize: "15px", color: "white" }}>
+                <div id="project1Name">
+                  <a href=""></a>
+                </div>
+              </div>
+            </div>
           </div>
           <div id="ReactSkillBox" className="skillTextBox RSB">
             <i
@@ -165,6 +158,64 @@ class Main extends React.Component {
             ></i>
           </div>
         </div>
+
+        {/* <div id="themastercontainer">
+          <div id="numberContainer1">
+            <number id="number1">1</number>
+            <number id="number2">2</number>
+            <number id="number3">3</number>
+            <number id="number4">4</number>
+            <number id="number5">5</number>
+            <number id="number6">6</number>
+            <number id="number7">7</number>
+            <number id="number8">8</number>
+            <number id="number9">9</number>
+            <number id="number0">0</number>
+          </div>
+          <div id="numberContainer2">
+            <number id="number1">1</number>
+            <number id="number2">2</number>
+            <number id="number3">3</number>
+            <number id="number4">4</number>
+            <number id="number5">5</number>
+            <number id="number6">6</number>
+            <number id="number7">7</number>
+            <number id="number8">8</number>
+            <number id="number9">9</number>
+            <number id="number0">0</number>
+          </div>
+          <div id="numberContainer3">
+            <number id="number1">1</number>
+            <number id="number2">2</number>
+            <number id="number3">3</number>
+            <number id="number4">4</number>
+            <number id="number5">5</number>
+            <number id="number6">6</number>
+            <number id="number7">7</number>
+            <number id="number8">8</number>
+            <number id="number9">9</number>
+            <number id="number0">0</number>
+          </div>
+          <div id="numberContainer4">
+            <number id="number1">1</number>
+            <number id="number2">2</number>
+            <number id="number3">3</number>
+            <number id="number4">4</number>
+            <number id="number5">5</number>
+            <number id="number6">6</number>
+            <number id="number7">7</number>
+            <number id="number8">8</number>
+            <number id="number9">9</number>
+            <number id="number0">0</number>
+          </div>
+        </div>
+        <button
+          id="test"
+          onClick={this.handleClick2}
+          className="btn btn-primary"
+        >
+          click Me
+        </button> */}
         <div id="experience" style={{ marginTop: "10px" }}></div>
         <div id="education" style={{ marginTop: "10px" }}></div>
         <div id="contact" style={{ marginTop: "10px" }}></div>
@@ -203,6 +254,32 @@ class Main extends React.Component {
     document.getElementById("isYears").addEventListener("click", () => {
       ReactTooltip.hide(this.ageRef);
     });
+    // setTimeout(() => {
+    //   $("#numberContainer1").animate(
+    //     {
+    //       scrollTop: $("#numberContainer1 #number1").offset().top,
+    //     },
+    //     "slow"
+    //   );
+    //   $("#numberContainer2").animate(
+    //     {
+    //       scrollTop: $("#numberContainer2 #number1").offset().top,
+    //     },
+    //     "slow"
+    //   );
+    //   $("#numberContainer3").animate(
+    //     {
+    //       scrollTop: $("#numberContainer3 #number1").offset().top,
+    //     },
+    //     "slow"
+    //   );
+    //   $("#numberContainer4").animate(
+    //     {
+    //       scrollTop: $("#numberContainer4 #number1").offset().top,
+    //     },
+    //     "slow"
+    //   );
+    // }, 500);
   }
   outsideClick(event, notelem) {
     notelem = $(notelem); // jquerize (optional)
@@ -211,12 +288,40 @@ class Main extends React.Component {
       i,
       len = notelem.length;
     for (i = 0; i < len; i++) {
-      if (event.target == notelem[i] || notelem[i].contains(event.target)) {
+      if (event.target === notelem[i] || notelem[i].contains(event.target)) {
         clickedOut = false;
       }
     }
     if (clickedOut) return true;
     else return false;
+  }
+  handleClick2(that) {
+    $("button").click(function () {
+      $("#numberContainer1").animate(
+        {
+          scrollTop: $("#numberContainer1 #number6").offset().top,
+        },
+        "slow"
+      );
+      $("#numberContainer2").animate(
+        {
+          scrollTop: $("#numberContainer2 #number9").offset().top,
+        },
+        "slow"
+      );
+      $("#numberContainer3").animate(
+        {
+          scrollTop: $("#numberContainer3 #number6").offset().top,
+        },
+        "slow"
+      );
+      $("#numberContainer4").animate(
+        {
+          scrollTop: $("#numberContainer4 #number9").offset().top,
+        },
+        "slow"
+      );
+    });
   }
   handleClick(that) {
     console.log(that);
@@ -231,45 +336,35 @@ class Main extends React.Component {
 
       if (id === "htmlBox") {
         $("#HTMLSkillBox").fadeIn(500);
-        checkNeeded = true;
       } else if (id === "cssBox") {
         $("#CSSSkillBox").fadeIn(500);
-        checkNeeded = true;
       } else if (id === "jsBox") {
         $("#JSSkillBox").fadeIn(500);
-        checkNeeded = true;
       } else if (id === "nodejsBox") {
         $("#NodeJSSkillBox").fadeIn(500);
-        checkNeeded = true;
       } else if (id === "reactBox") {
         $("#ReactSkillBox").fadeIn(500);
-        checkNeeded = true;
       }
     } else if (that?.target?.className?.includes("closeX")) {
       let id = that?.target?.parentElement?.id;
       if (id === "HTMLSkillBox") {
         $("#HTMLSkillBox").fadeOut(500);
-        checkNeeded = false;
         $("#introduction").fadeIn(500);
         $("#skills").fadeIn(500);
       } else if (id === "CSSSkillBox") {
         $("#CSSSkillBox").fadeOut(500);
-        checkNeeded = false;
         $("#introduction").fadeIn(500);
         $("#skills").fadeIn(500);
       } else if (id === "JSSkillBox") {
         $("#JSSkillBox").fadeOut(500);
-        checkNeeded = false;
         $("#introduction").fadeIn(500);
         $("#skills").fadeIn(500);
       } else if (id === "NodeJSSkillBox") {
         $("#NodeJSSkillBox").fadeOut(500);
-        checkNeeded = false;
         $("#introduction").fadeIn(500);
         $("#skills").fadeIn(500);
       } else if (id === "ReactSkillBox") {
         $("#ReactSkillBox").fadeOut(500);
-        checkNeeded = false;
         $("#introduction").fadeIn(500);
         $("#skills").fadeIn(500);
       }

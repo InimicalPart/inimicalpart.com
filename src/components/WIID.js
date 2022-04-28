@@ -13,9 +13,7 @@ function escapeHTML(str) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/\?/g, "&#63;")
-    .replace(/\//g, "&#47;")
-    .replace(/\"/g, "&quot;")
-    .replace(/\'/g, "&#39;");
+    .replace(/\//g, "&#47;");
 }
 let imgs = importAll(require.context("../img", false, /\.(png|jpe?g|svg)$/));
 function importAll(r) {
