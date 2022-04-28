@@ -551,7 +551,7 @@ class WIID extends React.Component {
               }
               setSize = "106px";
             }
-            document.getElementById("WIID_CUSTOM_STATUS").innerHTML = setText;
+            document.getElementById("WIID_CUSTOM_STATUS").innerText = setText;
             document.getElementById("WIID_CUSTOM_STATUS").style.left = setSize;
             document.getElementById("WIID_CUSTOM_STATUS").style.visibility =
               "visible";
@@ -672,7 +672,7 @@ class WIID extends React.Component {
                 }
                 stateText = stateText + "...";
               }
-              document.getElementById("WIID_STATE").innerHTML =
+              document.getElementById("WIID_STATE").innerText =
                 escapeHTML(stateText);
               if (stateHoverForFull)
                 document.getElementById("WIID_STATE").dataset.tip =
@@ -702,7 +702,7 @@ class WIID extends React.Component {
                 }
                 detailsText = detailsText + "...";
               }
-              document.getElementById("WIID_DETAILS").innerHTML =
+              document.getElementById("WIID_DETAILS").innerText =
                 escapeHTML(detailsText);
               if (detailsHoverForFull)
                 document.getElementById("WIID_DETAILS").dataset.tip =
@@ -740,7 +740,7 @@ class WIID extends React.Component {
                   }
                   stateText = stateText + "...";
                 }
-                document.getElementById("WIID_STATE").innerHTML =
+                document.getElementById("WIID_STATE").innerText =
                   escapeHTML(stateText);
                 if (stateHoverForFull)
                   document.getElementById("WIID_STATE").dataset.tip =
@@ -771,7 +771,7 @@ class WIID extends React.Component {
                   }
                   detailsText = detailsText + "...";
                 }
-                document.getElementById("WIID_DETAILS").innerHTML =
+                document.getElementById("WIID_DETAILS").innerText =
                   escapeHTML(detailsText);
                 if (detailsHoverForFull)
                   document.getElementById("WIID_DETAILS").dataset.tip =
@@ -893,7 +893,7 @@ class WIID extends React.Component {
               }
               stateText = stateText + "...";
             }
-            document.getElementById("WIID_STATE").innerHTML =
+            document.getElementById("WIID_STATE").innerText =
               escapeHTML(stateText);
             if (stateHoverForFull)
               document.getElementById("WIID_STATE").dataset.tip = fullStateText;
@@ -919,7 +919,7 @@ class WIID extends React.Component {
               }
               detailsText = detailsText + "...";
             }
-            document.getElementById("WIID_DETAILS").innerHTML =
+            document.getElementById("WIID_DETAILS").innerText =
               escapeHTML(detailsText);
             if (detailsHoverForFull)
               document.getElementById("WIID_DETAILS").dataset.tip =
