@@ -18,7 +18,7 @@
     "react-helmet": "^6.1.0",
     "react-responsive": "^9.0.0-beta.6",
     "react-router": "^6.2.2",
-    "react-router-dom": "^6.2.2",
+    "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.0",
     "react-tooltip": "^4.2.21",
     "uniqid": "^5.4.0",
