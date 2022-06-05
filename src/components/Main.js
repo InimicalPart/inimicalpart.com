@@ -133,15 +133,8 @@ class Main extends React.Component {
               onClick={this.handleClick}
             ></i>
             <p></p>
-            <div id="projects" style={{ marginTop: "10px" }}>
-              <div style={{ color: "white" }}>
-                <b>Projects</b>
-              </div>
-              <div id="project1" style={{ fontSize: "15px", color: "white" }}>
-                <div id="project1Name">
-                  <a href=""></a>
-                </div>
-              </div>
+            <div id="information" style={{ marginTop: "10px" }}>
+                
             </div>
           </div>
           <div id="ReactSkillBox" className="skillTextBox RSB">
