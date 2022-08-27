@@ -93,6 +93,15 @@ class Main extends React.Component {
               className="closeX bi bi-x-lg"
               onClick={this.handleClick}
             ></i>
+                        <div id="information" style={{ marginTop: "10px" }}>
+                <p color="white" style={{
+                    position:"absolute",
+                    fontSize:"45px",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                }}>To Be Written</p>
+            </div>
           </div>
           <div id="CSSSkillBox" className="skillTextBox CSB">
             <i
@@ -106,6 +115,15 @@ class Main extends React.Component {
               className="closeX bi bi-x-lg"
               onClick={this.handleClick}
             ></i>
+                        <div id="information" style={{ marginTop: "10px" }}>
+                <p color="white" style={{
+                    position:"absolute",
+                    fontSize:"45px",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                }}>To Be Written</p>
+            </div>
           </div>
           <div id="JSSkillBox" className="skillTextBox JSB">
             <i
@@ -119,6 +137,15 @@ class Main extends React.Component {
               className="closeX bi bi-x-lg"
               onClick={this.handleClick}
             ></i>
+                        <div id="information" style={{ marginTop: "10px" }}>
+                <p color="white" style={{
+                    position:"absolute",
+                    fontSize:"45px",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                }}>To Be Written</p>
+            </div>
           </div>
           <div id="NodeJSSkillBox" className="skillTextBox NJSB">
             <i
@@ -132,9 +159,14 @@ class Main extends React.Component {
               className="closeX bi bi-x-lg"
               onClick={this.handleClick}
             ></i>
-            <p></p>
             <div id="information" style={{ marginTop: "10px" }}>
-                
+                <p color="white" style={{
+                    position:"absolute",
+                    fontSize:"45px",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                }}>To Be Written</p>
             </div>
           </div>
           <div id="ReactSkillBox" className="skillTextBox RSB">
@@ -149,6 +181,15 @@ class Main extends React.Component {
               className="closeX bi bi-x-lg"
               onClick={this.handleClick}
             ></i>
+                        <div id="information" style={{ marginTop: "10px" }}>
+                <p color="white" style={{
+                    position:"absolute",
+                    fontSize:"45px",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                }}>To Be Written</p>
+            </div>
           </div>
         </div>
 
