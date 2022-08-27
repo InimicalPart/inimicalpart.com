@@ -28,7 +28,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "upload": "react-scripts build && scp -r build/ root@inimicalpart.com:'/var/www/website/' && ssh root@inimicalpart.com sudo service inimicalpart.com restart"
   },
   "eslintConfig": {
     "extends": [
