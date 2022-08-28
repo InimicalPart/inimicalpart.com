@@ -28,4 +28,6 @@ yarn-error.log*
 *.service
 *.conf
 *.log
-app.js
+# app.js
+.dccache
+package-old.json
