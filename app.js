@@ -342,13 +342,22 @@ async function makeIMG(type, birthUnix,fixedRmvDif,xrmvbias=0,yrmvbias=0) {
             console.log(yrmvbias)
             if (!yrmvbias) yrmvbias = 12.5
         } else if (type == "pretty") {
-            birthDnT.setDate(birthDnT.getDate() +3 )
+            function isLeapYear(year) {return ((year%4)==0&&!((year%400)!==0&&(year%100)==0))}
+            let addDays = 0
+            for (var i = birthDnT.getFullYear(); i <= currentDnT.getFullYear(); i++) {
+                if (isLeapYear(i)) addDays++
+            }
+            birthDnT.setDate(birthDnT.getDate() +addDays )
             t = prettyMs(currentDnT - birthUnix)
             rmvdif=4
             if (!yrmvbias) yrmvbias = 4
         } else if (type == "prettyF") {
-            // tempFix
-            birthDnT.setDate(birthDnT.getDate() +3 )
+            function isLeapYear(year) {return ((year%4)==0&&!((year%400)!==0&&(year%100)==0))}
+            let addDays = 0
+            for (var i = birthDnT.getFullYear(); i <= currentDnT.getFullYear(); i++) {
+                if (isLeapYear(i)) addDays++
+            }
+            birthDnT.setDate(birthDnT.getDate() +addDays )
             t = prettyMs(currentDnT - birthDnT, {verbose: true})
             rmvdif=4
             if (!yrmvbias) yrmvbias = 0
