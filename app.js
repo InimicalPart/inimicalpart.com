@@ -141,10 +141,31 @@ function scrubCacheControl(res) {
 app.get(["/v1/img", "/v1/img.png"], async (req, res) => {
   try {
     let query = req.query;
+    console.log(query);
     let pth = "";
-    let unixBirth = Object.keys(query).includes("birthUnix")
-      ? parseInt(query["birthUnix"])
-      : 116362272e4;
+    let unixBirth, unixDate;
+    let offset = 0;
+    if (Object.keys(query).includes("offset")) {
+      offset = parseInt(query["offset"]);
+    }
+    if (Object.keys(query).includes("birth")) {
+      try {
+        unixDate = new Date(query["birth"]);
+        unixDate.setHours(unixDate.getHours() + Math.abs(offset / 60));
+        unixBirth = unixDate.getTime();
+      } catch (e) {
+        return res.status(400).send("Invalid query value: birth");
+      }
+    }
+    if (!unixBirth) {
+      unixDate = new Date(
+        Object.keys(query).includes("birthUnix")
+          ? parseInt(query["birthUnix"])
+          : 1163622720000
+      );
+      unixDate.setHours(unixDate.getHours() + Math.abs(offset / 60));
+      unixBirth = unixDate.getTime();
+    }
     let fRD = Object.keys(query).includes("rmvdif")
       ? parseInt(query["rmvdif"])
       : null;
@@ -246,7 +267,7 @@ server
   });
 
 /* prettier-ignore */
-function nextBirthday(e,t){let n=new Date(e.getMonth()+1+"/"+e.getDate()+"/"+(new Date).getFullYear()+" "+e.getHours()+":"+e.getMinutes()+":"+e.getSeconds());return n<new Date&&(n=n.setFullYear(n.getFullYear()+1)),t&&console.log(new Date(n)),n instanceof Date?n.getTime():n}
+function nextBirthday(e,t){let n=new Date(e.getMonth()+1+"/"+e.getDate()+"/"+(new Date()).getFullYear()+" "+e.getHours()+":"+e.getMinutes()+":"+e.getSeconds());return n<new Date&&(n=n.setFullYear(n.getFullYear()+1)),t&&console.log(new Date(n)),n instanceof Date?n.getTime():n}
 /* prettier-ignore */
 function makeid(length) {
     var result           = '';
@@ -263,71 +284,89 @@ async function makeIMG(type, birthUnix,fixedRmvDif,xrmvbias=0,yrmvbias=0) {
         let pth = path.join(__dirname, "build/img/" + type + "_" + customId + ".png")
         // console.log(pth)
         var t, temp, tempTime;
+        var currentDnT = new Date()
+        var birthDnT = new Date(birthUnix)
+        console.log("=====================================\nCDnT Offset:", currentDnT.getTimezoneOffset(),"\nBDnT Offset:", birthDnT.getTimezoneOffset(),"\nNXDnT Offset:", new Date(nextBirthday(birthDnT)).getTimezoneOffset(),"\n=====================================")
+        // currentDnT.setHours(currentDnT.getHours()+Math.abs(currentDnT.getTimezoneOffset()/60))
+        // console.log(new Date(birthUnix).toLocaleString())
+        // birthDnT.setHours(birthDnT.getHours()+Math.abs(birthDnT.getTimezoneOffset()/60))
         var rmvdif = 10
         if ("seconds" == type) {
-            tempTime = "" + (nextBirthday(new Date(birthUnix)) - new Date) / 1e3;
+            tempTime = "" + (nextBirthday(birthDnT) - currentDnT) / 1e3;
             temp = tempTime.split(".");
             temp[1] = String(temp[1]).substring(0, 3).padEnd(3, "0");
             void 0 === temp[1] && (temp[1] = "0");
             t = temp.join(".");
             if (!yrmvbias) yrmvbias = 12.5
         } else if ("minutes" == type){
-            tempTime = "" + (nextBirthday(new Date(birthUnix)) - new Date) / 6e4;
+            tempTime = "" + (nextBirthday(birthDnT) - currentDnT) / 6e4;
             temp = tempTime.split(".");
             temp[1] = String(temp[1]).substring(0, 4).padEnd(4, "0");
             void 0 === temp[1] && (temp[1] = "0");
             t = temp.join(".")
             if (!yrmvbias) yrmvbias = 12.5
         } else if ("hours" == type) {
-            tempTime = "" + (nextBirthday(new Date(birthUnix)) - new Date) / 36e5;
+            tempTime = "" + (nextBirthday(birthDnT) - currentDnT) / 36e5;
             temp = tempTime.split("."), temp[1] = String(temp[1]).substring(0, 5).padEnd(5, "0");
             void 0 === temp[1] && (temp[1] = "0"); t = temp.join(".");
             if (!yrmvbias) yrmvbias = 12.5
         } else if ("days" == type) {
-            tempTime = "" + (nextBirthday(new Date(birthUnix)) - new Date) / 864e5;
+            tempTime = "" + (nextBirthday(birthDnT) - currentDnT) / 864e5;
             temp = tempTime.split(".");
             temp[1] = String(temp[1]).substring(0, 6).padEnd(6, "0");
             void 0 === temp[1] && (temp[1] = "0");
             t = temp.join(".");
             if (!yrmvbias) yrmvbias = 12.5
         } else if ("weeks" == type) {
-            tempTime = "" + (nextBirthday(new Date(birthUnix)) - new Date) / 6048e5;
+            tempTime = "" + (nextBirthday(birthDnT) - currentDnT) / 6048e5;
             temp = tempTime.split(".");
             temp[1] = String(temp[1]).substring(0, 7).padEnd(7, "0");
             void 0 === temp[1] && (temp[1] = "0");
             t = temp.join(".");
             if (!yrmvbias) yrmvbias = 12.5
         } else if ("months" == type) {
-            tempTime = "" + (nextBirthday(new Date(birthUnix)) - new Date) / 2628028800
+            tempTime = "" + (nextBirthday(birthDnT) - currentDnT) / 2628028800
             temp = tempTime.split(".")
             temp[1] = String(temp[1]).substring(0, 8).padEnd(8, "0")
             void 0 === temp[1] && (temp[1] = "0")
             t = temp.join(".")
             if (!yrmvbias) yrmvbias = 12.5
         } else if ("milliseconds" == type) {
-            t = String(nextBirthday(new Date(birthUnix)) - (new Date).getTime())
+            t = String(nextBirthday(birthDnT) - (currentDnT).getTime())
             if (!yrmvbias) yrmvbias = 12.5
         } else if ("years" == type) {
-            t = (new Date - new Date(birthUnix)) / 31559039999.999992
+            t = (currentDnT - birthDnT) / 31556926080 // 31540000000
             t = String(t).split(".");
             t[1] = String(t[1]).padEnd(15, "0")
             t = t.join(".")
             console.log(yrmvbias)
             if (!yrmvbias) yrmvbias = 12.5
         } else if (type == "pretty") {
-            t = prettyMs(new Date - new Date(birthUnix))
+            function isLeapYear(year) {return ((year%4)==0&&!((year%400)!==0&&(year%100)==0))}
+            let addDays = 0
+            for (let year of [2006,2007,2007,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022]) {
+                if (isLeapYear(year)) addDays++
+            }
+            birthDnT.setDate(birthDnT.getDate() +addDays )
+            t = prettyMs(currentDnT - birthUnix)
             rmvdif=4
             if (!yrmvbias) yrmvbias = 4
         } else if (type == "prettyF") {
-            t = prettyMs(new Date - new Date(birthUnix), {verbose: true})
+            function isLeapYear(year) {return ((year%4)==0&&!((year%400)!==0&&(year%100)==0))}
+            let addDays = 0
+            for (let year of [2006,2007,2007,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022]) {
+                if (isLeapYear(year)) addDays++
+            }
+            birthDnT.setDate(birthDnT.getDate() +addDays )
+            t = prettyMs(currentDnT - birthDnT, {verbose: true})
             rmvdif=4
-            if (!yrmvbias) yrmvbias = 4
+            if (!yrmvbias) yrmvbias = 0
         } else if (type == "prettyLeft") {
-            t = prettyMs(nextBirthday(new Date(birthUnix)) - (new Date).getTime())
+            t = prettyMs(nextBirthday(birthDnT) - (currentDnT).getTime())
             rmvdif=10
             if (!yrmvbias) yrmvbias = 11
         } else if (type == "prettyFLeft") {
-            t = prettyMs(nextBirthday(new Date(birthUnix)) - (new Date).getTime(), {verbose: true})
+            t = prettyMs(nextBirthday(birthDnT) - (currentDnT).getTime(), {verbose: true})
             rmvdif=4
             if (!yrmvbias) yrmvbias = 4
             // &rmvdif=10&yrmvbias=11 to make it remove the bottom of the "y"

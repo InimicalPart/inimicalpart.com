@@ -52,8 +52,7 @@ class Years extends React.Component {
       let isYears = document.getElementById("isYears"); // Get the 'isYears' element
       if (isYears) {
         time =
-          (new Date() - new Date(unixAge)) /
-          (1000 * 60 * 60 * 24 * 365.2666666666666);
+          (new Date() - new Date(unixAge)) / (1000 * 60 * 60 * 24 * 365.2422);
         time = String(time).split(".");
         if (tipEnabled) {
           tip = time[0] + "." + String(time[1]).padEnd(15, "0");

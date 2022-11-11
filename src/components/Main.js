@@ -53,7 +53,7 @@ class Main extends React.Component {
             was 10 years old. I work on front-end and back-end development.
           </div>
         </div>
-        <div className="SkillBoxContainer" id="skills">
+        {/* <div className="SkillBoxContainer" id="skills">
           <div
             id="htmlBox"
             onClick={this.handleClick}
@@ -79,8 +79,8 @@ class Main extends React.Component {
             onClick={this.handleClick}
             className="reactBox end skillBox"
           ></div>
-        </div>
-        <div className="skillsTextContainer" id="skillTextContainer">
+        </div> */}
+        {/* <div className="skillsTextContainer" id="skillTextContainer">
           <div id="HTMLSkillBox" className="skillTextBox HSB">
             <i
               style={{
@@ -189,9 +189,9 @@ class Main extends React.Component {
                     left: "50%",
                     transform: "translate(-50%, -50%)",
                 }}>To Be Written</p>
-            </div>
-          </div>
-        </div>
+            </div> */}
+          {/* </div> */}
+        {/* </div> */}
 
         {/* <div id="themastercontainer">
           <div id="numberContainer1">
@@ -250,9 +250,9 @@ class Main extends React.Component {
         >
           click Me
         </button> */}
-        <div id="experience" style={{ marginTop: "10px" }}></div>
+        {/* <div id="experience" style={{ marginTop: "10px" }}></div>
         <div id="education" style={{ marginTop: "10px" }}></div>
-        <div id="contact" style={{ marginTop: "10px" }}></div>
+        <div id="contact" style={{ marginTop: "10px" }}></div> */}
         {/*
                         <a href="https://nodejs.org" style={{ color: "#01ac00" }}>
               Node.JS
@@ -315,94 +315,94 @@ class Main extends React.Component {
     //   );
     // }, 500);
   }
-  outsideClick(event, notelem) {
-    notelem = $(notelem); // jquerize (optional)
-    // check outside click for multiple elements
-    var clickedOut = true,
-      i,
-      len = notelem.length;
-    for (i = 0; i < len; i++) {
-      if (event.target === notelem[i] || notelem[i].contains(event.target)) {
-        clickedOut = false;
-      }
-    }
-    if (clickedOut) return true;
-    else return false;
-  }
-  handleClick2(that) {
-    $("button").click(function () {
-      $("#numberContainer1").animate(
-        {
-          scrollTop: $("#numberContainer1 #number6").offset().top,
-        },
-        "slow"
-      );
-      $("#numberContainer2").animate(
-        {
-          scrollTop: $("#numberContainer2 #number9").offset().top,
-        },
-        "slow"
-      );
-      $("#numberContainer3").animate(
-        {
-          scrollTop: $("#numberContainer3 #number6").offset().top,
-        },
-        "slow"
-      );
-      $("#numberContainer4").animate(
-        {
-          scrollTop: $("#numberContainer4 #number9").offset().top,
-        },
-        "slow"
-      );
-    });
-  }
-  handleClick(that) {
-    console.log(that);
-    if (that?.target?.className?.includes("skillBox")) {
-      let id = that?.target?.id;
-      $("#introduction").fadeOut(500);
-      $("#skills").fadeOut(500);
-      //   setTimeout(() => {
-      //     $("#introduction").fadeIn(500);
-      //     $("#skills").fadeIn(500);
-      //   }, 2000);
+//   outsideClick(event, notelem) {
+//     notelem = $(notelem); // jquerize (optional)
+//     // check outside click for multiple elements
+//     var clickedOut = true,
+//       i,
+//       len = notelem.length;
+//     for (i = 0; i < len; i++) {
+//       if (event.target === notelem[i] || notelem[i].contains(event.target)) {
+//         clickedOut = false;
+//       }
+//     }
+//     if (clickedOut) return true;
+//     else return false;
+//   }
+//   handleClick2(that) {
+//     $("button").click(function () {
+//       $("#numberContainer1").animate(
+//         {
+//           scrollTop: $("#numberContainer1 #number6").offset().top,
+//         },
+//         "slow"
+//       );
+//       $("#numberContainer2").animate(
+//         {
+//           scrollTop: $("#numberContainer2 #number9").offset().top,
+//         },
+//         "slow"
+//       );
+//       $("#numberContainer3").animate(
+//         {
+//           scrollTop: $("#numberContainer3 #number6").offset().top,
+//         },
+//         "slow"
+//       );
+//       $("#numberContainer4").animate(
+//         {
+//           scrollTop: $("#numberContainer4 #number9").offset().top,
+//         },
+//         "slow"
+//       );
+//     });
+//   }
+//   handleClick(that) {
+//     console.log(that);
+//     if (that?.target?.className?.includes("skillBox")) {
+//       let id = that?.target?.id;
+//       $("#introduction").fadeOut(500);
+//       $("#skills").fadeOut(500);
+//       //   setTimeout(() => {
+//       //     $("#introduction").fadeIn(500);
+//       //     $("#skills").fadeIn(500);
+//       //   }, 2000);
 
-      if (id === "htmlBox") {
-        $("#HTMLSkillBox").fadeIn(500);
-      } else if (id === "cssBox") {
-        $("#CSSSkillBox").fadeIn(500);
-      } else if (id === "jsBox") {
-        $("#JSSkillBox").fadeIn(500);
-      } else if (id === "nodejsBox") {
-        $("#NodeJSSkillBox").fadeIn(500);
-      } else if (id === "reactBox") {
-        $("#ReactSkillBox").fadeIn(500);
-      }
-    } else if (that?.target?.className?.includes("closeX")) {
-      let id = that?.target?.parentElement?.id;
-      if (id === "HTMLSkillBox") {
-        $("#HTMLSkillBox").fadeOut(500);
-        $("#introduction").fadeIn(500);
-        $("#skills").fadeIn(500);
-      } else if (id === "CSSSkillBox") {
-        $("#CSSSkillBox").fadeOut(500);
-        $("#introduction").fadeIn(500);
-        $("#skills").fadeIn(500);
-      } else if (id === "JSSkillBox") {
-        $("#JSSkillBox").fadeOut(500);
-        $("#introduction").fadeIn(500);
-        $("#skills").fadeIn(500);
-      } else if (id === "NodeJSSkillBox") {
-        $("#NodeJSSkillBox").fadeOut(500);
-        $("#introduction").fadeIn(500);
-        $("#skills").fadeIn(500);
-      } else if (id === "ReactSkillBox") {
-        $("#ReactSkillBox").fadeOut(500);
-        $("#introduction").fadeIn(500);
-        $("#skills").fadeIn(500);
-      }
-    }
-  }
+//       if (id === "htmlBox") {
+//         $("#HTMLSkillBox").fadeIn(500);
+//       } else if (id === "cssBox") {
+//         $("#CSSSkillBox").fadeIn(500);
+//       } else if (id === "jsBox") {
+//         $("#JSSkillBox").fadeIn(500);
+//       } else if (id === "nodejsBox") {
+//         $("#NodeJSSkillBox").fadeIn(500);
+//       } else if (id === "reactBox") {
+//         $("#ReactSkillBox").fadeIn(500);
+//       }
+//     } else if (that?.target?.className?.includes("closeX")) {
+//       let id = that?.target?.parentElement?.id;
+//       if (id === "HTMLSkillBox") {
+//         $("#HTMLSkillBox").fadeOut(500);
+//         $("#introduction").fadeIn(500);
+//         $("#skills").fadeIn(500);
+//       } else if (id === "CSSSkillBox") {
+//         $("#CSSSkillBox").fadeOut(500);
+//         $("#introduction").fadeIn(500);
+//         $("#skills").fadeIn(500);
+//       } else if (id === "JSSkillBox") {
+//         $("#JSSkillBox").fadeOut(500);
+//         $("#introduction").fadeIn(500);
+//         $("#skills").fadeIn(500);
+//       } else if (id === "NodeJSSkillBox") {
+//         $("#NodeJSSkillBox").fadeOut(500);
+//         $("#introduction").fadeIn(500);
+//         $("#skills").fadeIn(500);
+//       } else if (id === "ReactSkillBox") {
+//         $("#ReactSkillBox").fadeOut(500);
+//         $("#introduction").fadeIn(500);
+//         $("#skills").fadeIn(500);
+//       }
+//     }
+//   }
 }
 export default Main;

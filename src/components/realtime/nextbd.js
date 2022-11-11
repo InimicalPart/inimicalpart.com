@@ -115,7 +115,7 @@ class NextBD extends React.Component {
     let willBeAgeInSec = document.getElementById("willBeAgeInSec");
     if (willBeAge && willBeAgeInSec) {
       let time, temp, timeLeftS, isItTime;
-      let unixAge = 1163622720000; // my birthday :)
+      let unixAge = 1163619120000; // my birthday :)
       time =
         (new Date() - new Date(unixAge)) /
         (1000 * 60 * 60 * 24 * 365.2666666666666);
