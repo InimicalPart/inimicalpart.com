@@ -344,8 +344,8 @@ async function makeIMG(type, birthUnix,fixedRmvDif,xrmvbias=0,yrmvbias=0) {
         } else if (type == "pretty") {
             function isLeapYear(year) {return ((year%4)==0&&!((year%400)!==0&&(year%100)==0))}
             let addDays = 0
-            for (let year of [2006,2007,2007,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022]) {
-                if (isLeapYear(year)) addDays++
+            for (var i = birthDnT.getFullYear(); i <= currentDnT.getFullYear(); i++) {
+                if (isLeapYear(i)) addDays++
             }
             birthDnT.setDate(birthDnT.getDate() +addDays )
             t = prettyMs(currentDnT - birthUnix)
@@ -354,8 +354,8 @@ async function makeIMG(type, birthUnix,fixedRmvDif,xrmvbias=0,yrmvbias=0) {
         } else if (type == "prettyF") {
             function isLeapYear(year) {return ((year%4)==0&&!((year%400)!==0&&(year%100)==0))}
             let addDays = 0
-            for (let year of [2006,2007,2007,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022]) {
-                if (isLeapYear(year)) addDays++
+            for (var i = birthDnT.getFullYear(); i <= currentDnT.getFullYear(); i++) {
+                if (isLeapYear(i)) addDays++
             }
             birthDnT.setDate(birthDnT.getDate() +addDays )
             t = prettyMs(currentDnT - birthDnT, {verbose: true})
