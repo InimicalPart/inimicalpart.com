@@ -1,0 +1,25 @@
+name: Screenshot
+on:
+  schedule: [{cron: "0 0 * * 0"}]
+  workflow_dispatch:
+  push: {branches: ["master", "main"]}
+jobs:
+  web-screenshot:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          filename: site.screenshot.svg
+          token: NOT_NEEDED
+
+          # Options
+          template: classic
+          base: ""
+          config_timezone: Europe/Sweden
+          plugin_screenshot: yes
+          plugin_screenshot_background: yes
+          plugin_screenshot_selector: body
+          plugin_screenshot_title: InimicalPart.com
+          plugin_screenshot_url: https://inimicalpart.com
