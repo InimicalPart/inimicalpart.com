@@ -1,4 +1,4 @@
-<img src="/site.screenshot.png" alt="inimicalpart.com">
+<img src="/site.screenshot.svg" alt="inimicalpart.com">
 
 ## TODO / Planned
 
