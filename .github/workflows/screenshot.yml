@@ -20,6 +20,7 @@ jobs:
           plugin_screenshot: yes
           plugin_screenshot_background: yes
           plugin_screenshot_selector: body
+          plugin_screenshot_wait: 1000
           plugin_screenshot.viewport: |
             {"width":962, "height":136}
           plugin_screenshot_title: Inimicalpart.com
