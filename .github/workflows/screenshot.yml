@@ -12,6 +12,6 @@ jobs:
       - uses: swinton/screenshot-website@v1.x
         with:
           source: https://inimicalpart.com
-          destination: site.screenshot.svg
+          destination: site.screenshot.png
           full-page: true
   
