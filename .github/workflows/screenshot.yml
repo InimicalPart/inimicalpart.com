@@ -15,7 +15,7 @@ jobs:
           token: NOT_NEEDED
 
           # Options
-          template: classic
+          template: terminal
           base: ""
           plugin_screenshot: yes
           plugin_screenshot_background: yes
