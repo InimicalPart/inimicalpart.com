@@ -18,7 +18,7 @@ jobs:
           template: terminal
           base: ""
           plugin_screenshot: yes
-          plugin_screenshot_wait: 1000
+          plugin_screenshot_wait: 3500
           plugin_screenshot.viewport: |
             {"width":962, "height":136}
           plugin_screenshot_title: Inimicalpart.com
