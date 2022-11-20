@@ -1,3 +1,5 @@
+<img src="/site.screenshot.svg" alt="inimicalpart.com">
+
 ## TODO / Planned
 
 - ✓ Add a closing X in the top right of the skillBox
