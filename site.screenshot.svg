@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="480" height="80" class="">
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="500" class="">
     <defs>
         <style/>
     </defs>
-    <style>@keyframes animation-gauge{0%{stroke-dasharray:0 329}}@keyframes animation-rainbow{0%,to{color:#7f00ff;fill:#7f00ff}14%{color:#a933ff;fill:#a933ff}29%{color:#007fff;fill:#007fff}43%{color:#00ff7f;fill:#00ff7f}57%{color:#ff0;fill:#ff0}71%{color:#ff7f00;fill:#ff7f00}86%{color:red;fill:red}}svg{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:14px;color:#777}h2{margin:8px 0 2px;padding:0;color:#0366d6;font-weight:400;font-size:16px}h2 svg{fill:currentColor}section&gt;.field{margin-left:5px;margin-right:5px}.field{display:flex;align-items:center;margin-bottom:2px;white-space:nowrap}.field svg{margin:0 8px;fill:#959da5;flex-shrink:0}.field.error{color:#cb2431}.field.error svg{fill:#cb2431}.row{display:flex;flex-wrap:wrap}.row section{flex:1 1 0}.chartist .ct-post{fill:rgba(127,127,127,.8)!important;color:rgba(127,127,127,.8)!important;font-size:9px;text-anchor:middle}:root{--color-calendar-graph-day-bg:#ebedf0;--color-calendar-graph-day-border:rgba(27,31,35,0.06);--color-calendar-graph-day-L1-bg:#9be9a8;--color-calendar-graph-day-L2-bg:#40c463;--color-calendar-graph-day-L3-bg:#30a14e;--color-calendar-graph-day-L4-bg:#216e39;--color-calendar-halloween-graph-day-L1-bg:#ffee4a;--color-calendar-halloween-graph-day-L2-bg:#ffc501;--color-calendar-halloween-graph-day-L3-bg:#fe9600;--color-calendar-halloween-graph-day-L4-bg:#03001c;--color-calendar-graph-day-L4-border:rgba(27,31,35,0.06);--color-calendar-graph-day-L3-border:rgba(27,31,35,0.06);--color-calendar-graph-day-L2-border:rgba(27,31,35,0.06);--color-calendar-graph-day-L1-border:rgba(27,31,35,0.06)}#metrics-end{width:100%}</style>
+    <style>@keyframes animation-gauge{0%{stroke-dasharray:0 329}}@keyframes animation-rainbow{0%,to{color:#7f00ff;fill:#7f00ff}14%{color:#a933ff;fill:#a933ff}29%{color:#007fff;fill:#007fff}43%{color:#00ff7f;fill:#00ff7f}57%{color:#ff0;fill:#ff0}71%{color:#ff7f00;fill:#ff7f00}86%{color:red;fill:red}}svg{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:14px;color:#777}h2{margin:8px 0 2px;padding:0;color:#0366d6;font-weight:400;font-size:16px}.gauge text,h2 svg{fill:currentColor}section&gt;.field{margin-left:5px;margin-right:5px}.field{display:flex;align-items:center;margin-bottom:2px;white-space:nowrap}.field svg{margin:0 8px;fill:#959da5;flex-shrink:0}.row{display:flex;flex-wrap:wrap}.row section{flex:1 1 0}.column{display:flex;flex-direction:column;align-items:center}#metrics-end,.fill-width{width:100%}.chartist .ct-post{fill:rgba(127,127,127,.8)!important;color:rgba(127,127,127,.8)!important;font-size:9px;text-anchor:middle}.categories,.category{display:flex;align-items:center}.categories{justify-content:space-around;margin-top:4px}.category{flex-direction:column;flex:1 1 0}.gauge{stroke-linecap:round;fill:none}.gauge.high{color:#18b663}.gauge-arc,.gauge-base{stroke:currentColor;stroke-width:10}.gauge-base{stroke-opacity:.2}.gauge-arc{fill:none;stroke-dashoffset:0;animation-delay:250ms;animation:animation-gauge 1s ease forwards}.gauge text{font-size:40px;font-family:monospace;text-anchor:middle;font-weight:600}.gauge .title{font-size:18px;color:#777}.screenshot{width:452px;height:315px;margin:8px 14px 4px;border-radius:5px}:root{--color-calendar-graph-day-bg:#ebedf0;--color-calendar-graph-day-border:rgba(27,31,35,0.06);--color-calendar-graph-day-L1-bg:#9be9a8;--color-calendar-graph-day-L2-bg:#40c463;--color-calendar-graph-day-L3-bg:#30a14e;--color-calendar-graph-day-L4-bg:#216e39;--color-calendar-halloween-graph-day-L1-bg:#ffee4a;--color-calendar-halloween-graph-day-L2-bg:#ffc501;--color-calendar-halloween-graph-day-L3-bg:#fe9600;--color-calendar-halloween-graph-day-L4-bg:#03001c;--color-calendar-graph-day-L4-border:rgba(27,31,35,0.06);--color-calendar-graph-day-L3-border:rgba(27,31,35,0.06);--color-calendar-graph-day-L2-border:rgba(27,31,35,0.06);--color-calendar-graph-day-L1-border:rgba(27,31,35,0.06)}</style>
     <style/>
     <foreignObject x="0" y="0" width="100%" height="100%">
         <div xmlns="http://www.w3.org/1999/xhtml" xmlns:xlink="http://www.w3.org/1999/xlink" class="items-wrapper">
@@ -18,17 +18,51 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
                             <path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"/>
                         </svg>
+                        https://inimicalpart.com
                     </div>
                 </section>
             </div>
+            <section>
+                <div class="row fill-width">
+                    <section class="categories">
+                        <div class="category column">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="50" height="50" class="gauge high">
+                                <circle class="gauge-base" r="53" cx="60" cy="60"/>
+                                <circle class="gauge-arc" transform="rotate(-90 60 60)" r="53" cx="60" cy="60" stroke-dasharray="315.84 329"/>
+                                <text x="60" y="60" dominant-baseline="central">96</text>
+                            </svg>
+                            <span class="title">Performance</span>
+                        </div>
+                        <div class="category column">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="50" height="50" class="gauge high">
+                                <circle class="gauge-base" r="53" cx="60" cy="60"/>
+                                <circle class="gauge-arc" transform="rotate(-90 60 60)" r="53" cx="60" cy="60" stroke-dasharray="329 329"/>
+                                <text x="60" y="60" dominant-baseline="central">100</text>
+                            </svg>
+                            <span class="title">Accessibility</span>
+                        </div>
+                        <div class="category column">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="50" height="50" class="gauge high">
+                                <circle class="gauge-base" r="53" cx="60" cy="60"/>
+                                <circle class="gauge-arc" transform="rotate(-90 60 60)" r="53" cx="60" cy="60" stroke-dasharray="329 329"/>
+                                <text x="60" y="60" dominant-baseline="central">100</text>
+                            </svg>
+                            <span class="title">Best Practices</span>
+                        </div>
+                        <div class="category column">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="50" height="50" class="gauge high">
+                                <circle class="gauge-base" r="53" cx="60" cy="60"/>
+                                <circle class="gauge-arc" transform="rotate(-90 60 60)" r="53" cx="60" cy="60" stroke-dasharray="296.1 329"/>
+                                <text x="60" y="60" dominant-baseline="central">90</text>
+                            </svg>
+                            <span class="title">SEO</span>
+                        </div>
+                    </section>
+                </div>
+            </section>
             <div class="row">
                 <section>
-                    <div class="field error">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
-                            <path fill-rule="evenodd" d="M2.343 13.657A8 8 0 1113.657 2.343 8 8 0 012.343 13.657zM6.03 4.97a.75.75 0 00-1.06 1.06L6.94 8 4.97 9.97a.75.75 0 101.06 1.06L8 9.06l1.97 1.97a.75.75 0 101.06-1.06L9.06 8l1.97-1.97a.75.75 0 10-1.06-1.06L8 6.94 6.03 4.97z"/>
-                        </svg>
-                        API error: 429 ((consider using "plugin_pagespeed_token"))
-                    </div>
+                    <img class="screenshot" src="data:image/jpeg;base64,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" width="452" height="315" />
                 </section>
             </div>
         </div>
