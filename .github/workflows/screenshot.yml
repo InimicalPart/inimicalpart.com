@@ -18,6 +18,6 @@ jobs:
           template: terminal
           base: ""
           plugin_screenshot: yes
-          plugin_screenshot_background: yes
+          plugin_screenshot_background: no
           plugin_screenshot_title: inimicalpart.com
           plugin_screenshot_url: https://inimicalpart.com  
