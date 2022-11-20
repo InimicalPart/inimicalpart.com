@@ -9,17 +9,9 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: lowlighter/metrics@latest
+      - uses: swinton/screenshot-website@v1.x
         with:
-          filename: site.screenshot.svg
-          token: NOT_NEEDED
-
-          # Options
-          template: classic
-          base: ""
-          config_timezone: Europe/Sweden
-          plugin_screenshot: yes
-          plugin_screenshot_background: yes
-          plugin_screenshot_selector: "#introduction"
-          plugin_screenshot_title: InimicalPart.com
-          plugin_screenshot_url: https://inimicalpart.com
+          source: https://inimicalpart.com
+          destination: site.screenshot.svg
+          full-page: true
+  
