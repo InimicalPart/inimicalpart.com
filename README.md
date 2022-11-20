@@ -1,4 +1,6 @@
-<img src="/site.screenshot.svg" alt="inimicalpart.com">
+<a align="center" href="https://inimicalpart.com">
+  <img align="center" src="/site.screenshot.svg" alt="inimicalpart.com">
+</a>
 
 ## TODO / Planned
 
