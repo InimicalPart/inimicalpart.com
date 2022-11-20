@@ -17,7 +17,6 @@ jobs:
           # Options
           template: terminal
           base: ""
-          plugin_screenshot: yes
-          plugin_screenshot_background: no
-          plugin_screenshot_title: inimicalpart.com
-          plugin_screenshot_url: https://inimicalpart.com  
+          plugin_pagespeed: yes
+          plugin_pagespeed_screenshot: yes
+          plugin_pagespeed_url: https://inimicalpart.com
