@@ -18,10 +18,11 @@ jobs:
           template: classic
           base: ""
           plugin_screenshot: yes
-          plugin_screenshot.viewport: |
-            {"width":500, "height":200}
+          plugin_screenshot_selector: body
           plugin_screenshot_title: Inimicalpart.com
           plugin_screenshot_url: https://inimicalpart.com
+          plugin_screenshot_viewport: |
+            {"width":500, "height":200}
           plugin_pagespeed: yes
           plugin_pagespeed_url: https://inimicalpart.com
           plugin_pagespeed_token: ${{ secrets.PAGESPEED_TOKEN }}
