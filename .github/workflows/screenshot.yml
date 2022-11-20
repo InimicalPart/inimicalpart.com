@@ -19,7 +19,7 @@ jobs:
           base: ""
           plugin_screenshot: yes
           plugin_screenshot.viewport: |
-            {"width":962, "height":136}
+            {"width":500, "height":200}
           plugin_screenshot_title: Inimicalpart.com
           plugin_screenshot_url: https://inimicalpart.com
           plugin_pagespeed: yes
