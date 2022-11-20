@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="91" class="">
+    <defs>
+        <style/>
+    </defs>
+    <style>@keyframes animation-gauge{0%{stroke-dasharray:0 329}}@keyframes animation-rainbow{0%,to{color:#7f00ff;fill:#7f00ff}14%{color:#a933ff;fill:#a933ff}29%{color:#007fff;fill:#007fff}43%{color:#00ff7f;fill:#00ff7f}57%{color:#ff0;fill:#ff0}71%{color:#ff7f00;fill:#ff7f00}86%{color:red;fill:red}}svg{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;font-size:14px;color:#777}h2{margin:8px 0 2px;padding:0;color:#0366d6;font-weight:400;font-size:16px}h2 svg{fill:currentColor}section&gt;.field{margin-left:5px;margin-right:5px}.field{display:flex;align-items:center;margin-bottom:2px;white-space:nowrap}.field svg{margin:0 8px;fill:#959da5;flex-shrink:0}.row{display:flex;flex-wrap:wrap}.row section{flex:1 1 0}.center{justify-content:center}.chartist .ct-post{fill:rgba(127,127,127,.8)!important;color:rgba(127,127,127,.8)!important;font-size:9px;text-anchor:middle}.screenshot{width:452px;height:315px;margin:8px 14px 4px;border-radius:5px}.autosize{width:auto;height:auto}:root{--color-calendar-graph-day-bg:#ebedf0;--color-calendar-graph-day-border:rgba(27,31,35,0.06);--color-calendar-graph-day-L1-bg:#9be9a8;--color-calendar-graph-day-L2-bg:#40c463;--color-calendar-graph-day-L3-bg:#30a14e;--color-calendar-graph-day-L4-bg:#216e39;--color-calendar-halloween-graph-day-L1-bg:#ffee4a;--color-calendar-halloween-graph-day-L2-bg:#ffc501;--color-calendar-halloween-graph-day-L3-bg:#fe9600;--color-calendar-halloween-graph-day-L4-bg:#03001c;--color-calendar-graph-day-L4-border:rgba(27,31,35,0.06);--color-calendar-graph-day-L3-border:rgba(27,31,35,0.06);--color-calendar-graph-day-L2-border:rgba(27,31,35,0.06);--color-calendar-graph-day-L1-border:rgba(27,31,35,0.06)}#metrics-end{width:100%}</style>
+    <style/>
+    <foreignObject x="0" y="0" width="100%" height="100%">
+        <div xmlns="http://www.w3.org/1999/xhtml" xmlns:xlink="http://www.w3.org/1999/xlink" class="items-wrapper">
+            <section>
+                <h2 class="field">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
+                        <path fill-rule="evenodd" d="M15 3H7c0-.55-.45-1-1-1H2c-.55 0-1 .45-1 1-.55 0-1 .45-1 1v9c0 .55.45 1 1 1h14c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1zM6 5H2V4h4v1zm4.5 7C8.56 12 7 10.44 7 8.5S8.56 5 10.5 5 14 6.56 14 8.5 12.44 12 10.5 12zM13 8.5c0 1.38-1.13 2.5-2.5 2.5S8 9.87 8 8.5 9.13 6 10.5 6 13 7.13 13 8.5z"/>
+                    </svg>
+                    InimicalPart.com
+                </h2>
+                <div class="row">
+                    <section class="row center">
+                        <img class="screenshot autosize" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcYAAAAiCAYAAADFwHkJAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEdElEQVR4nO3cOUgdWxzH8dRpLETS2puoEYOKC64gKlqZxpQqgoWoCBJBLRJQwQ01TSSoRQoXCCgSAhEFN1wQRQyKqMGVuKC4xKjx//gfmMlRri+veNrc7wcuc87MmTPT/fifmbmPBAAAuB79aQIAAIIRAAALwQgAgIVgBADAQjACAGAhGAEAsBCMAABYCEZ4pevra3d7dXXl9n///n2j/2/7dZ/ddo47bf1p27mG01d22znu9D3dl7MFcP8IRngdO2zswNEg8jTODiwn6Owx9vHbc3hij7HDz9P89n0AeBgEI7ySHTYLCwtycXFh2ltbW/L582c3vJzt8vKyjI+Pu+fo/m/fvrn92dlZGRkZMe2ZmRn59OmTfP361Zyncw8MDEhPT498//7djNGxKysr7vmDg4OytrbmhqP+5ufnb1SVAB4GwQiv4yxTqg8fPoifn5/Zt7m5KWlpaZKZmSmlpaXueA2oyMhICQ0NldbWVrOvoKBAAgMDTbutrU2eP39uxrx//17a29slOztbnjx5IiUlJTI2NiYBAQFSXFws09PTZnxISIhERETIzs6OVFRUSHR0tMTFxcnc3JyZs7a21r0v554BPAyCEV7HCZmjoyNJTk52A66lpUUSExNNsNnVYVlZmTQ0NMjq6qqkpqbK9va2PHv2zISo6u3tlbOzM/ny5Yu7T+dOSkoy7fLycjO+q6vL9GNjY00gVldXy5s3b0zlqXNrMI6OjsrPnz/F399fwsPD5devXzfuGcD9IxjhdewqbH9/34Sh0sotKChI8vLyJDc31x1fWFgoHR0dJuwSEhLcpdOMjAx3zO7urgQHB8vw8LDp5+TkSF1dnWnrsmp9fb2kp6fL69evTUV6fHxsqtWioiIzprGxUXx8fGRpaclUoxqYWVlZcnp6euOeAdw/ghFeyXl2d3BwIDExMaatFZwud6qnT5+6zx214quqqjLPIp1gnJyclJSUFNPW6k/nGBoaMv2TkxOJioqS9fV10+/r6zPb/v5+E3YvX76UxcVFqayslJqaGunu7jbH3759a46FhYWZqvLx48fy8ePH//xSD4D/B8EIr2O/jbq3tyfx8fGmMtOqT9sais3NzTIxMWGC68ePH+YZoFaTnZ2d5jw9psuwKj8/X3x9feXVq1fy7t07syyqAepco6mpyVSTL168kKmpKVNB6jU0TA8PD011qMd1KVUDV+9FQ1YDUp97KvvNVwD3i2CEV3JCSysxDZ/Ly0vT1+VSfdlG6TKrVnZKw1HfMHWcn5+7obWxsWHO0eeDGopaaerbrfZ1dInUGe/0dX6HPmfUa9i0ErXnAPAwCEZ4rduBc9f3iHbb03eMf5v/9ry3v4v0dPyuby0B3D+CEV7p9j/YeOrbH+87Aebpn2+cY/aY2/9iYwfg3/p33ReAh0EwAgBgIRgBALAQjAAAWAhGAAAsBCMAABaCEQAAC8EIAICFYAQAwEIwAgBgIRgBALAQjAAAWAhGAAAsBCMAABaCEQAAC8EIAID8CcZ/AIt9Q8TMhS+WAAAAAElFTkSuQmCC" height="97" width="1280" alt="" />
+                    </section>
+                </div>
+            </section>
+        </div>
+        <div xmlns="http://www.w3.org/1999/xhtml" id="metrics-end"></div>
+    </foreignObject>
+</svg>
