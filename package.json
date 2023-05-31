@@ -16,7 +16,7 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "^5.0.1",
     "react-tooltip": "^4.2.21",
-    "socket.io": "^4.5.1",
+    "socket.io": "^4.6.2",
     "web-vitals": "^3.0.0"
   },
   "scripts": {
