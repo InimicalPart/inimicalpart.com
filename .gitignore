@@ -31,4 +31,9 @@ yarn-error.log*
 # app.js
 .dccache
 package-old.json
+# easter egg ;)
 *secret.txt*
+/backend_src/utils/secrets.ts
+/backend_src/utils/github-keys.ts
+/dist
+/.history
