@@ -66,7 +66,7 @@ export default function Confetti() {
     const [celebration, setCelebration] = useState(false);
     useEffect(() => {
         const interval = setInterval(() => {
-            const birthday = nextBirthday(new Date(1148687520000));
+            const birthday = nextBirthday(new Date(1163622720000));
             if (birthday - Date.now() < 500 && !celebration) {
                 HBD_Confetti();
                 setCelebration(true);

@@ -1,5 +1,5 @@
 "use client"
-import { Card, CardHeader, CardBody, Divider, CardFooter } from "@nextui-org/react"
+import { Card, CardHeader, CardBody, Divider, CardFooter, Tooltip } from "@nextui-org/react"
 import { GithubIcon } from "./icons/misc"
 
 export default function ProjectCard({
@@ -22,14 +22,14 @@ export default function ProjectCard({
             <p className="ml-2 text-sm dark:text-neutral-400 text-neutral-500 text-ellipsis truncate">github.com/{owner}/{repo}</p>
         </CardHeader>
         <CardBody>
-          <p className="text-lg font-bold text-center">{title}</p>
+          <p className="text-lg font-bold text-center text-ellipsis truncate">{title}</p>
           <Divider className="my-2"/>
-          <p className="text-md text-center">{description}</p>
+          <p className="text-md text-center line-clamp-5">{description}</p>
         </CardBody>
 
         <CardFooter className="text-center text-sm dark:text-neutral-500 text-neutral-800 w-full justify-center">
           {lastUpdated ? <>
-            Last updated: {new Date(lastUpdated).toLocaleDateString()}
+            <Tooltip delay={0} closeDelay={100} content={new Date(lastUpdated).toString()}><span>Last updated: {new Date(lastUpdated).toLocaleDateString()}</span></Tooltip>
           <Divider orientation="vertical" className="mx-2"/></> : null}
           Click to view on GitHub
         </CardFooter>

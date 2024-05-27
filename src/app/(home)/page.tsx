@@ -22,7 +22,7 @@ export default async function Home() {
         <h1 className="text-4xl font-bold">Hi there! 👋</h1>
         <p className="text-lg mt-4">
           I&apos;m <b>Inimi</b>, a {' '}
-            <Tooltip content={<RealtimeYears/>} placement="bottom" closeDelay={200} delay={0}>
+            <Tooltip content={<RealtimeYears/>} placement="bottom" closeDelay={100} delay={0}>
               <b>{<RealtimeYears cutAt={8}/>}</b>
             </Tooltip>{' '} year-old full-stack developer.
         </p>
