@@ -1,4 +1,3 @@
-# My website (inimicalpart.com)
+# inimicalpart.com
 
-
-> _Contact me on me@inimicalpart.com if you require assistance or have any questions._
+This is a re-write of https://inimicalpart.com but in NextJS. This README file will be filled out when possible.
