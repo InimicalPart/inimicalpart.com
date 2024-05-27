@@ -5,10 +5,6 @@ import { Tooltip } from "@nextui-org/tooltip";
 
 export default async function Home() {
 
-
-  const age = <RealtimeYears cutAt={8}/>
-  const ageFull = <RealtimeYears/>
-
   const allRepositories = [
     ...(await fetch("https://api.github.com/users/incoverse/repos",    { headers: { Accept: "application/vnd.github+json" }, next: { revalidate: 3600 } }).then(res => res.json())),
     ...(await fetch("https://api.github.com/users/inimicalpart/repos", { headers: { Accept: "application/vnd.github+json" }, next: { revalidate: 3600 } }).then(res => res.json()))
@@ -26,8 +22,8 @@ export default async function Home() {
         <h1 className="text-4xl font-bold">Hi there! 👋</h1>
         <p className="text-lg mt-4">
           I&apos;m <b>Inimi</b>, a {' '}
-            <Tooltip content={ageFull} placement="bottom" closeDelay={200} delay={0}>
-              <b>{age}</b>
+            <Tooltip content={<RealtimeYears/>} placement="bottom" closeDelay={200} delay={0}>
+              <b>{<RealtimeYears cutAt={8}/>}</b>
             </Tooltip>{' '} year-old full-stack developer.
         </p>
 

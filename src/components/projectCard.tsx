@@ -16,7 +16,7 @@ export default function ProjectCard({
     lastUpdated?: Date
 }) {
     return (
-        <Card className="w-[350px] h-[300px] dark:bg-neutral-800 bg-neutral-200" isPressable onPress={() => window.open(`https://github.com/${owner}/${repo}`, "_blank")}>
+        <Card className="w-[350px] h-[300px] dark:bg-neutral-800 bg-neutral-100" isPressable onPress={() => window.open(`https://github.com/${owner}/${repo}`, "_blank")}>
         <CardHeader className="flex flex-row">
             <GithubIcon/>
             <p className="ml-2 text-sm dark:text-neutral-400 text-neutral-500 text-ellipsis truncate">github.com/{owner}/{repo}</p>
