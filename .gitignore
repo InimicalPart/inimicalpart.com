@@ -8,32 +8,31 @@
 # testing
 /coverage
 
+# next.js
+/.next/
+/out/
+
 # production
 /build
 
 # misc
 .DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+*.pem
 
+# debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.history/
 
+# local env files
+.env*.local
 
-# local files server
-*.service
-*.conf
-*.log
-# app.js
-.dccache
-package-old.json
-# easter egg ;)
-*secret.txt*
-/backend_src/utils/secrets.ts
-/backend_src/utils/github-keys.ts
-/dist
-/.history
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+.history
+_ref
