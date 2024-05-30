@@ -16,7 +16,7 @@ export async function middleware(req: NextRequest) {
   if (subdomain) {
 
     //! api.inimicalpart.com -> inimicalpart.com/api
-    console.log(">>> Rewriting URL: ", url.pathname, `/${subdomain}${url.pathname}`)
+    //!     inimicalpart.com -> inimicalpart.com/www
     url.pathname = `/${subdomain}${url.pathname}`;
   }
 

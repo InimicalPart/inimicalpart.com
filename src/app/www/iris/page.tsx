@@ -3,6 +3,7 @@ import { chooseArticle } from "@/utils/misc";
 import { Metadata } from "next";
 import IRISGrantCode from "@/components/iris-grant";
 import { Suspense } from "react";
+import { Skeleton } from "@nextui-org/react";
 
 export async function generateMetadata(): Promise<Metadata> {
     const years = dayjs().diff(dayjs(1163622720000), "year", true).toString().split(".")[0]
@@ -39,7 +40,7 @@ export default function IRISGrant() {
             <p className="text-lg mt-6 font-semibold">Thank you for authorizing IRIS!</p>
             <p className="text-lg mt-2">Please send the following message to IRIS to complete the authorization process:</p>
             <br/>
-            <Suspense>
+            <Suspense fallback={<Skeleton className="mx-1 rounded-lg h-[50px] w-[415px]" />}>
               <IRISGrantCode/>
             </Suspense>
         </div>
