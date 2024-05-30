@@ -1,9 +1,7 @@
-"use client"
 import "@/styles/globals.css";
 import { Viewport } from "next";
 import { Providers } from "./providers";
 import InimiNavbar from "@/components/navbar";
-import { usePathname } from 'next/navigation'
 
 export const viewport: Viewport = {
 	themeColor: [
@@ -19,15 +17,14 @@ export default function RootLayout({
 }) {
 
 	const currentYear = new Date().getFullYear();
-
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<head />
 			<body className="dark:bg-neutral-900 bg-white">
 				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
 					<div className="relative flex flex-col min-h-screen">
-						<InimiNavbar activePage={usePathname()}/>
-						<main className="container mx-auto max-w-7xl pt-16 pb-9 px-6 flex-grow dark:bg-neutral-900 bg-white mb-5">
+						<InimiNavbar/>
+						<main className="container mx-auto max-w-7xl pt-16 pb-16 px-6 flex-grow mb-5">
 							{children}
 						</main>
 						<footer className="w-full flex items-center justify-center py-3  bg-neutral-100 text-default-900 dark:bg-black dark:text-dark-100 border-t border-divider absolute bottom-0">

@@ -1,16 +1,28 @@
 module.exports = {
-    reactStrictMode: false,
-    distDir: "build",
-    experimental: {
-      serverActions: {
-        allowedOrigins: ["localhost","inimicalpart.com", "*.inimicalpart.com"],
-      },
-      instrumentationHook: true,
+  reactStrictMode: false,
+  distDir: "build",
+  experimental: {
+    serverActions: {
+      allowedOrigins: ["localhost", "inimicalpart.com", "*.inimicalpart.com"],
     },
-    poweredByHeader: false,
-    logging: {
-      fetches: {
-        fullUrl: true,
+    instrumentationHook: true,
+  },
+  poweredByHeader: false,
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/api/v1/age/img.png',
+        destination: '/api/v1/age/img',
       },
-    }
+      {
+        source: '/v1/age/img.png',
+        destination: '/v1/age/img',
+      },
+    ]
+  }
 }

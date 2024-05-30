@@ -1,7 +1,41 @@
-import Confetti from "@/components/confetti";
-import RealtimeYears from "@/components/years";
-import ProjectCard from "@/components/projectCard";
+import Confetti from "@/components/main/confetti";
+import RealtimeYears from "@/components/main/years";
+import ProjectCard from "@/components/main/projectCard";
 import { Tooltip } from "@nextui-org/tooltip";
+import { Metadata } from "next";
+import dayjs from "dayjs";
+import { chooseArticle } from "@/utils/misc";
+
+
+
+
+
+export async function generateMetadata(): Promise<Metadata> {
+  const years = dayjs().diff(dayjs(1163622720000), "year", true).toString().split(".")[0]
+
+  return {
+    title: "Inimi",
+    description: 'The homepage of inimicalpart.com',
+    openGraph: {
+      title: "Inimi",
+      description: `The official website of Inimi, ${chooseArticle(years)} ${years}-year-old full-stack developer.`,
+      type: 'website',
+      url: 'https://inimicalpart.com',
+    },
+    twitter: {
+      card: "summary",
+      images: [
+        {
+          url: 'https://inimicalpart.com/logo.png',
+          width: 64,
+          height: 64,
+          alt: 'Inimi\'s logo',
+        }
+      ],      
+    }
+  }
+}
+ 
 
 export default async function Home() {
 
@@ -20,12 +54,13 @@ export default async function Home() {
       <Confetti/>
       <div className="text-center -mt-4 flex flex-col">
         <h1 className="text-4xl font-bold">Hi there! 👋</h1>
-        <p className="text-lg mt-4">
-          I&apos;m <b>Inimi</b>, a {' '}
+        <div className="text-lg mt-4 flex flex-row self-center">
+          <p>I&apos;m <span className="font-bold">Inimi</span>, a</p>
             <Tooltip content={<RealtimeYears/>} placement="bottom" closeDelay={100} delay={0}>
               <b>{<RealtimeYears cutAt={8}/>}</b>
-            </Tooltip>{' '} year-old full-stack developer.
-        </p>
+            </Tooltip>
+            <p>year-old full-stack developer.</p>
+        </div>
 
         <p className="text-md mt-4">
           I&apos;m very passionate about developing software, and I love to challenge myself in pursuit of learning new things.
