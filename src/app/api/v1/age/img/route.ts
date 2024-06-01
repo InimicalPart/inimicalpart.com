@@ -19,6 +19,7 @@ export async function GET(request: NextRequest) {
         if (Array.from(query.keys()).includes("birth")) {
           try {
               unixDate = new Date((query.get("birth") as string));
+              if (unixDate.toString() == "Invalid Date") throw new Error("Invalid date")
               unixDate.setHours(unixDate.getHours() + Math.abs(offset / 60));
               unixBirth = unixDate.getTime();
           } catch (e) {
