@@ -25,7 +25,7 @@ export default function ProjectCard({
           <CardBody>
             <p className="text-lg font-bold text-center text-ellipsis truncate">{title}</p>
             <Divider className="my-2"/>
-            <p className="text-md text-center line-clamp-6">{description}</p>
+            <p className="text-md text-center line-clamp-5 min-[389px]:line-clamp-6">{description}</p>
           </CardBody>
 
           <Divider className="opacity-50"/>
