@@ -212,11 +212,14 @@ export async function GET(request: NextRequest) {
             throw new Error("Invalid type")
           }
 
+          const width = fontSize * 12 < 2000 ? 2000 : fontSize * 12
+          const height = fontSize * 2 < 1000 ? 1000 : fontSize * 2
+
           //! Create the image
           let img = sharp({
             create: {
-              width: fontSize * 12,
-              height: fontSize * 2,
+              width,
+              height,
               channels: 4,
               background: { r: 0, g: 0, b: 0, alpha: 0 }
             }
@@ -225,7 +228,7 @@ export async function GET(request: NextRequest) {
           
           //! Add text
           img.composite([{
-            input: Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${fontSize*12}" height="${fontSize*2}">
+            input: Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">
             <text x="5" y="${fontSize-5 < 1 ? 5 : fontSize-5}" font-family="Arial" font-size="${fontSize}" fill="white">${time}</text>
             </svg>`),
             gravity: "northwest"

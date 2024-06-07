@@ -21,15 +21,17 @@ export default function ProjectCard({
               <GithubIcon/>
               <p className="ml-2 text-sm dark:text-neutral-400 text-neutral-500 text-ellipsis truncate">github.com/{owner}/{repo}</p>
           </CardHeader>
+          <Divider className="opacity-50 -mt-1 mb-1"/>
           <CardBody>
             <p className="text-lg font-bold text-center text-ellipsis truncate">{title}</p>
             <Divider className="my-2"/>
-            <p className="text-md text-center line-clamp-5">{description}</p>
+            <p className="text-md text-center line-clamp-6">{description}</p>
           </CardBody>
 
+          <Divider className="opacity-50"/>
           <CardFooter className="text-center text-sm dark:text-neutral-500 text-neutral-800 w-full justify-center">
             {lastUpdated ? <>
-              <Tooltip delay={0} closeDelay={100} content={new Date(lastUpdated).toString()}><span>Last updated: {new Date(lastUpdated).toLocaleDateString()}</span></Tooltip>
+              <Tooltip showArrow delay={0} closeDelay={100} content={new Date(lastUpdated).toString()}><span>Last updated: {new Date(lastUpdated).toLocaleDateString()}</span></Tooltip>
             <Divider orientation="vertical" className="mx-2"/></> : null}
             Click to view on GitHub
           </CardFooter>

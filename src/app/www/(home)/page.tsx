@@ -6,6 +6,7 @@ import { Metadata } from "next";
 import dayjs from "dayjs";
 import { chooseArticle } from "@/utils/misc";
 
+export const revalidate = 3600
 
 
 
@@ -40,8 +41,8 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Home() {
 
   const allRepositories = [
-    ...(await fetch("https://api.github.com/users/incoverse/repos",    { headers: { Accept: "application/vnd.github+json" }, next: { revalidate: 3600 } }).then(res => res.json())),
-    ...(await fetch("https://api.github.com/users/inimicalpart/repos", { headers: { Accept: "application/vnd.github+json" }, next: { revalidate: 3600 } }).then(res => res.json()))
+    ...(await fetch("https://api.github.com/users/incoverse/repos",    { headers: { Accept: "application/vnd.github+json" }, cache: "force-cache" }).then(res => res.json())),
+    ...(await fetch("https://api.github.com/users/inimicalpart/repos", { headers: { Accept: "application/vnd.github+json" }, cache: "force-cache" }).then(res => res.json()))
   ]
 
 
@@ -50,16 +51,18 @@ export default async function Home() {
   const top3Repositories = sortedRepositories.slice(0, 3)
 
 
+
   return <>
       <Confetti/>
       <div className="text-center -mt-4 flex flex-col">
         <h1 className="text-4xl font-bold">Hi there! 👋</h1>
-        <div className="text-lg mt-4 flex flex-row self-center">
-          <p>I&apos;m <span className="font-bold">Inimi</span>, a</p>
-            <Tooltip content={<RealtimeYears/>} placement="bottom" closeDelay={100} delay={0}>
-              <b>{<RealtimeYears cutAt={8}/>}</b>
+        <div className="text-lg mt-5 md:mt-4">
+          <div>I&apos;m <span className="font-bold">Inimi</span>,<br className="hidden"/>
+            <Tooltip showArrow content={<RealtimeYears/>} placement="bottom" closeDelay={100} delay={0}>
+              <div className="inline-flex">{<RealtimeYears cutAt={8} boldYears={true} addArticle={true}/>}</div>
             </Tooltip>
-            <p>year-old full-stack developer.</p>
+            year-old <br className="hidden"/>full-stack developer.
+        </div>
         </div>
 
         <p className="text-md mt-4">
@@ -70,8 +73,7 @@ export default async function Home() {
         <p className="text-md mt-4">
           My latest projects:
         </p>
-
-        <div className="flex flex-row mt-10 flex-wrap justify-center gap-4">
+        <div className="flex flex-row mt-5 flex-wrap justify-center gap-4">
           {top3Repositories.map((repo: any) => <ProjectCard key={repo.id} repo={repo.name} description={repo.description} owner={repo.owner.login} title={repo.name} lastUpdated={new Date(repo.pushed_at)}/>)}
         </div>
       </div>
