@@ -1,15 +1,29 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { getValidSubdomain } from '@/utils/subdomain';
 
-//! RegExp for public files  *.css, *.js, *.png, etc.
-const PUBLIC_FILE = /\.(.*)$/;
 
-export async function middleware(req: NextRequest) {
+const getValidSubdomain = (host?: string | null) => {
+  let subdomain: string | null = null;
+  if (!host && typeof window !== 'undefined') {
+    host = window.location.host;
+  }
+  if (host && host.includes('.')) {
+    const candidate = host.split('.')[0];
+    if (candidate && !candidate.includes('localhost')) {
+      subdomain = candidate;
+    }
+  }
+
+  //! Return subdomain or null if localhost, but if there is no subdomain, return "www"
+  return subdomain || ((host as string).split('.')[0].includes('localhost') ? null : "www");
+};
+
+export default async function middleware(req: NextRequest) {
   const url = req.nextUrl.clone();
 
   //! Skip public files
-  if (PUBLIC_FILE.test(url.pathname) || url.pathname.startsWith('/_next')) return;
+  if (url.pathname.startsWith('/_next') || url.pathname == "/favicon.ico") return;
+
 
   const host = req.headers.get('host');
   const subdomain = getValidSubdomain(host);

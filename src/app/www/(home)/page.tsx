@@ -41,8 +41,8 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Home() {
 
   const allRepositories = [
-    ...(await fetch("https://api.github.com/users/incoverse/repos",    { headers: { Accept: "application/vnd.github+json" }, cache: "force-cache" }).then(res => res.json())),
-    ...(await fetch("https://api.github.com/users/inimicalpart/repos", { headers: { Accept: "application/vnd.github+json" }, cache: "force-cache" }).then(res => res.json()))
+    ...(await fetch("https://api.github.com/users/incoverse/repos",    { headers: { Accept: "application/vnd.github+json" }, next: { revalidate: 3600 }}).then(res => res.json())),
+    ...(await fetch("https://api.github.com/users/inimicalpart/repos", { headers: { Accept: "application/vnd.github+json" }, next: { revalidate: 3600 }}).then(res => res.json()))
   ]
 
 

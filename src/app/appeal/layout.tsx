@@ -23,7 +23,7 @@ export default function RootLayout({
 			<body className="dark:bg-neutral-900 bg-white">
 				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
 					<div className="relative flex flex-col min-h-screen">
-						<InimiNavbar/>
+						<InimiNavbar noItems/>
 						<main className="container mx-auto max-w-7xl pt-16 pb-16 px-6 flex-grow mb-5">
 							{children}
 						</main>

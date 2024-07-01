@@ -1,3 +1,4 @@
+require('next-ws/server').verifyPatch();
 module.exports = {
   reactStrictMode: false,
   distDir: "build",
@@ -16,12 +17,17 @@ module.exports = {
   async rewrites() {
     return [
       {
-        source: '/api/v1/age/img.png',
-        destination: '/api/v1/age/img',
+        source: '/api/auth/:path*',
+        destination: '/api/v1/auth/:path*',
       },
+    ]
+  },
+  images: {
+    remotePatterns: [
       {
-        source: '/v1/age/img.png',
-        destination: '/v1/age/img',
+        protocol: 'https',
+        hostname: 'cdn.discordapp.com',
+        port: '',
       },
     ]
   }

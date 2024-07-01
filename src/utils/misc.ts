@@ -17,5 +17,4 @@ export function chooseArticle(word: string | number): string {
     } else {
         return "a";
     }
-    return ""
   }
