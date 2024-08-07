@@ -97,7 +97,7 @@ export default function Etc({ session: user }: { session: any }) {
         const offense = offenses.find(offense=>offense.id == offenseID)
         if (offense) {
           setSelectedKeys(new Set([offenseID as string]))
-          if (offense.can_appeal && offense.status == "ACTIVE") {
+          if (offense.can_appeal && offense.status == "ACTIVE" && !offense.appeal) {
             setFocusedOffense(offense)
             onOpen()
           }
