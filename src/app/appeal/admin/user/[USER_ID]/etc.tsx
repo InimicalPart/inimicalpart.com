@@ -3,11 +3,11 @@
 import Loading from "@/components/loading"
 import { getServerInfo } from "@/utils/iris"
 import { Accordion, AccordionItem, Avatar, Badge, Button, Checkbox, Chip, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Input, Link, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Spacer, Textarea, Tooltip, User, useDisclosure } from "@nextui-org/react"
-import { getSession, signOut } from "next-auth/react"
 import { useEffect, useState } from "react"
 import prettyMilliseconds from "pretty-ms"
 import { redirect, useRouter } from "next/navigation"
 import { AdminIcon, BackIcon } from "@/components/icons/misc"
+import { useClerk } from "@clerk/nextjs"
 
 type Offense = {
   id: string;
@@ -37,12 +37,13 @@ type Offense = {
 }
 
 
-export default function Etc({ session, userID }: { session: any, userID: string }) {
+export default function Etc({ session: sessionUser, userID }: { session: any, userID: string }) {
 
-    const appealURLPrefix = process.env.NODE_ENV == "development" ? "/appeal" : ""
-    const apiURLPrefix = process.env.NODE_ENV == "development" ? "/api" : ""
+    const appealURLPrefix = process.env.NODE_ENV == "development" ? "" : ""
+    const apiLoc = process.env.NODE_ENV == "development" ? "http://appeal.localhost:3000/api" : "https://appeal.inimicalpart.com/api"
 
     const [loading, setLoading] = useState(true)
+    const [isSigningOut, setSigningOut] = useState(false)
     const [isAdmin, setIsAdmin] = useState(null)
     const [user, setUser] = useState({} as any)
     const [toggling, setToggling] = useState(false)
@@ -54,26 +55,29 @@ export default function Etc({ session, userID }: { session: any, userID: string 
     const [nextUpdate, setNextUpdate] = useState(Date.now() + 300000)
     const [nextUpdateString, setNextUpdateString] = useState("5 minutes")
 
+    const { signOut, redirectToUserProfile } = useClerk();
+
+
 
     useEffect(() => {
       Promise.all([
-      fetch(location.origin + apiURLPrefix + "/v1/appeal/user-info")
+      fetch(apiLoc + "/user-info")
       .then(res=>res.json())
       .then(data=>{
         setIsAdmin(data.admin)
       }),
-      fetch(location.origin + apiURLPrefix + "/v1/appeal/admin/users/"+userID)
+      fetch(apiLoc + "/admin/users/"+userID)
       .then(res=>res.json())
       .then(data=>{
         setUser(data.user)
       }),
 
-      fetch(location.origin + apiURLPrefix + "/v1/appeal/server-info")
+      fetch(apiLoc + "/server-info")
       .then(res=>res.json())
       .then(data=>{
         setServerInfo(data.serverInfo)
       }),
-      fetch(location.origin + apiURLPrefix + "/v1/appeal/admin/users/"+userID+"/offenses")
+      fetch(apiLoc + "/admin/users/"+userID+"/offenses")
       .then(res=>res.json())
       .then(data=>{
 
@@ -86,17 +90,17 @@ export default function Etc({ session, userID }: { session: any, userID: string 
       })]).then(()=>{
         setLoading(false)
       })  
-    }, [])
+    }, [appealURLPrefix, userID, apiLoc])
 
     useEffect(() => {
       if (isAdmin === false) {
           redirect(appealURLPrefix + "/")
       }
-  }, [isAdmin])
+  }, [isAdmin, apiLoc, appealURLPrefix])
 
     useEffect(() => {
       const interval = setInterval(() => {
-        fetch(location.origin + apiURLPrefix + "/v1/appeal/admin/users/"+userID+"/offenses")
+        fetch(apiLoc + "/admin/users/"+userID+"/offenses")
         .then(res=>res.json())
         .then(data=>{
 
@@ -109,7 +113,7 @@ export default function Etc({ session, userID }: { session: any, userID: string 
         })
       }, nextUpdate - Date.now())
       return () => clearInterval(interval)
-    }, [nextUpdate])
+    }, [nextUpdate, appealURLPrefix, apiLoc, userID])
 
     useEffect(() => {
       const interval = setInterval(() => {
@@ -124,7 +128,7 @@ export default function Etc({ session, userID }: { session: any, userID: string 
       }
 
       setIsRevoking(true)
-      fetch(location.origin + apiURLPrefix + "/v1/appeal/admin/users/"+userID+"/offenses/"+focusedOffense.id+"/revoke", {
+      fetch(apiLoc + "/admin/users/"+userID+"/offenses/"+focusedOffense.id+"/revoke", {
         method: "POST"
       })
       .then(res=>res.json())
@@ -151,7 +155,7 @@ export default function Etc({ session, userID }: { session: any, userID: string 
       }
 
       setToggling(true)
-      fetch(location.origin + apiURLPrefix + "/v1/appeal/admin/users/"+userID+"/offenses/"+offense.id+"/toggle-appealment")
+      fetch(apiLoc + "/admin/users/"+userID+"/offenses/"+offense.id+"/toggle-appealment")
       .then(res=>res.json())
       .then(data=>{
         if (data.error == "IRIS_UNAVAILABLE") {
@@ -173,7 +177,7 @@ export default function Etc({ session, userID }: { session: any, userID: string 
     }
 
 
-    return (loading ? <Loading/> : <div>
+    return (loading ? <Loading isSigningOut={isSigningOut}/> : <div>
       <div className="flex w-full -mt-10 justify-between items-center">
       <Tooltip content="Go back">
         <Link href={appealURLPrefix + "/admin"}>
@@ -187,24 +191,31 @@ export default function Etc({ session, userID }: { session: any, userID: string 
           <Avatar
             as="button"
             isBordered={true}
-            src={session.user.image}
+            src={sessionUser.imageUrl}
             className="transition-transform"
           />
         </DropdownTrigger>
         <DropdownMenu aria-label="User Actions" variant="flat">
           <DropdownItem key="profile" className="h-14 gap-2 cursor-default" isReadOnly>
             <p className="font-bold">Signed in as</p>
-            <p className="font-bold">@{session.user.username}</p>
+            <p className="font-bold">@{sessionUser.username}</p>
           </DropdownItem>
-            <DropdownItem key="logout" color="danger" className="text-danger" onClick={() => signOut()}>
-              Log Out
-            </DropdownItem>
+          <DropdownItem key="logout" color="primary" className="text-primary" onClick={() => redirectToUserProfile()}>
+             Manage Account
+          </DropdownItem>
+          <DropdownItem key="logout" color="danger" className="text-danger" onClick={() => {
+            setLoading(true)
+            setSigningOut(true)
+            signOut({ redirectUrl: '/' })
+          }}>
+            Log Out
+          </DropdownItem>
         </DropdownMenu>
       </Dropdown>
       </div>
     <div className="w-full text-center items-center justify-items-center content-center flex flex-col">
       <Tooltip content={"@" + user.username + " (" + user.id + ")"} placement="top" closeDelay={100} delay={0}>
-        <h1 className="font-bold text-3xl">{user.name}'{user.name.endsWith("s") ? "" : "s"} offenses</h1>
+        <h1 className="font-bold text-3xl">{user.name}&apos;{user.name.endsWith("s") ? "" : "s"} offenses</h1>
       </Tooltip>
       <Tooltip content={serverInfo.name + " (" + serverInfo.id + ")"} placement="bottom" closeDelay={100} delay={0}>
         <div className="flex items-center justify-center gap-2">

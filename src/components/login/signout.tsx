@@ -1,18 +1,15 @@
+"use client";
 
-import { signOut } from "@/utils/next-auth/auth"
+import { useClerk } from "@clerk/nextjs";
 import { Button } from "@nextui-org/button"
  
-export function SignOut() {
+export default function SignOut() {
+
+    const {signOut} = useClerk()
+
   return (
-    <form
-      action={async () => {
-        "use server"
-        await signOut()
-      }}
-    >
-      <Button type="submit" className="w-[150px] h-8">
+      <Button type="submit" className="w-[150px] h-8" onClick={() => signOut({redirectUrl: "/"})}>
         Sign out
       </Button>
-    </form>
   )
 } 

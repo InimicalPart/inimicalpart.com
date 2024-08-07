@@ -10,18 +10,19 @@ import showdown from 'showdown';
 import Image from "next/image";
 import prettyMilliseconds from "pretty-ms";
 import { redirect, useRouter } from "next/navigation";
+import { User } from "@clerk/nextjs/server";
 
 let converter = new showdown.Converter();
 
 export default function Etc({
     params,
-    session
+    session: user
 }: {
     params: {OFFENSE_ID: string},
     session: any
 }) {
     const appealURLPrefix = process.env.NODE_ENV == "development" ? "/appeal" : ""
-    const apiURLPrefix = process.env.NODE_ENV == "development" ? "/api" : ""
+    const apiLoc = process.env.NODE_ENV == "development" ? "http://appeal.localhost:3000/api" : "https://appeal.inimicalpart.com/api"
 
 
     const [loading, setLoading] = useState(true)
@@ -112,7 +113,7 @@ export default function Etc({
     const isActive = !["APPROVED" , "DENIED"].includes(offense?.appeal?.status ?? "") && offense?.status == "APPEALED"
     useEffect(() => {
         Promise.all([
-        fetch(location.origin + apiURLPrefix + "/v1/appeal/offenses/" + params.OFFENSE_ID)
+        fetch(apiLoc + "/offenses/" + params.OFFENSE_ID)
         .then(res=>res.json())
         .then(data=>{
             if (data.error == "IRIS_UNAVAILABLE" || data.error == "OFFENSE_NOT_FOUND") {
@@ -121,7 +122,7 @@ export default function Etc({
             setOffense(data.offense)
             setTimeout(()=>document.getElementById("messages")?.scrollTo(0, document.getElementById("messages")?.scrollHeight as any), 150)
         }),
-        fetch(location.origin + apiURLPrefix + "/v1/appeal/offenses/" + params.OFFENSE_ID + "/appeal/users")
+        fetch(apiLoc + "/offenses/" + params.OFFENSE_ID + "/appeal/users")
         .then(res=>res.json())
         .then(data=>{
             if (data.error == "IRIS_UNAVAILABLE" || data.error == "OFFENSE_NOT_FOUND") {
@@ -136,12 +137,12 @@ export default function Etc({
              setNextUpdate(Date.now() + 300000)
           }
         })  
-      }, [params.OFFENSE_ID])
+      }, [params.OFFENSE_ID, apiLoc, appealURLPrefix, isActive])
 
       useEffect(() => {
         const interval = setInterval(() => {
             Promise.all([
-            fetch(location.origin + apiURLPrefix + "/v1/appeal/offenses/" + params.OFFENSE_ID)
+            fetch(apiLoc + "/offenses/" + params.OFFENSE_ID)
             .then(res=>res.json())
             .then(data=>{
                 if (data.error == "IRIS_UNAVAILABLE" || data.error == "OFFENSE_NOT_FOUND") {
@@ -152,7 +153,7 @@ export default function Etc({
                 setTimeout(()=>document.getElementById("messages")?.scrollTo(0, document.getElementById("messages")?.scrollHeight as any), 150)
     
             }),
-            fetch(location.origin + apiURLPrefix + "/v1/appeal/offenses/" + params.OFFENSE_ID + "/appeal/users")
+            fetch(apiLoc + "/offenses/" + params.OFFENSE_ID + "/appeal/users")
             .then(res=>res.json())
             .then(data=>{
                 if (data.error == "IRIS_UNAVAILABLE" || data.error == "OFFENSE_NOT_FOUND") {
@@ -169,7 +170,7 @@ export default function Etc({
             })  
         }, nextUpdate - Date.now())
         return () => clearInterval(interval)
-      }, [nextUpdate])
+      }, [nextUpdate, params.OFFENSE_ID, apiLoc, appealURLPrefix, isActive])
   
       useEffect(() => {
         let interval = null
@@ -196,7 +197,7 @@ export default function Etc({
 
     function sendMessage() {
         setSending(true)
-        fetch(`http://localhost:3000${apiURLPrefix}/v1/appeal/offenses/${params.OFFENSE_ID}/appeal/messages`, {
+        fetch(`${apiLoc}/offenses/${params.OFFENSE_ID}/appeal/messages`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -228,6 +229,7 @@ export default function Etc({
               offense.appeal.transcript = data.transcript;
               offense.appeal.status = data.appeal_status
               setOffense(appealCopy)
+              setUsers(data.users)
               setTimeout(()=>document.getElementById("messages")?.scrollTo(0, document.getElementById("messages")?.scrollHeight as any), 150)
             }
             setSending(false)
@@ -297,9 +299,9 @@ export default function Etc({
                             {
                                 offense?.appeal?.transcript.map((event, index) => {
                                     if (event.type == "message") {
-                                        return <div key={index} className={"flex flex-row " + (event.user_id == session.user.user_id ? "text-right mr-2 " : "") + (index == offense?.appeal?.transcript.length as any - 1 ? "mb-2 " : "") + (index==0?"mt-2":"")}>
+                                        return <div key={index} className={"flex flex-row " + (event.user_id == user.discord.id ? "text-right mr-2 " : "") + (index == offense?.appeal?.transcript.length as any - 1 ? "mb-2 " : "") + (index==0?"mt-2":"")}>
                                                 {   
-                                                    event.user_id != session.user.user_id ? <>
+                                                    event.user_id != user.discord.id ? <>
                                                         {
                                                             event.user_id == "--" ? <AvatarIcon size={32}/>
                                                             : <Avatar src={
@@ -312,9 +314,9 @@ export default function Etc({
                                                 <div className="w-full">
                                                     <div className="">
 
-                                                        <p className={"leading-2 w-full font-bold inline-flex gap-1 " + (event.user_id == session.user.user_id ? "flex-row-reverse": "flex-row")}>
+                                                        <p className={"leading-2 w-full font-bold inline-flex gap-1 " + (event.user_id == user.discord.id ? "flex-row-reverse": "flex-row")}>
                                                             <span>
-                                                                {event.user_id == session.user.user_id ? session.user.name : 
+                                                                {event.user_id == user.discord.id ? user.firstName : 
                                                                 (event.user_id == "--" ? "Anonymous" : users.find((user: any) => user.id == event.user_id)?.name)
                                                             }</span>
                                                             <span className="text-gray-400">·</span>
@@ -322,7 +324,7 @@ export default function Etc({
                                                         </p>
                                                     </div>
                                                     <div className="grid">
-                                                        <Card className={"dark:bg-neutral-700 bg-neutral-200 max-w-[90%] w-fit max-h-min " + (event.user_id == session.user.user_id ? "justify-self-end rounded-tr-none" : "rounded-tl-none")}>
+                                                        <Card className={"dark:bg-neutral-700 bg-neutral-200 max-w-[90%] w-fit max-h-min " + (event.user_id == user.discord.id ? "justify-self-end rounded-tr-none" : "rounded-tl-none")}>
                                                             <CardBody>
                                                                 <p className="w-full" dangerouslySetInnerHTML={{__html: htmlAsIntended(DOMPurify.sanitize(converter.makeHtml((event.message ?? "").replaceAll("\\n", "\n").replaceAll("<br/>", "\n")) ?? "")) as any}}></p>
                                                             </CardBody>
@@ -330,9 +332,9 @@ export default function Etc({
                                                     </div>
                                                 </div>
                                                 {   
-                                                    event.user_id == session.user.user_id ? <>
+                                                    event.user_id == user.discord.id ? <>
                                                         <Spacer x={2}/>
-                                                        <Avatar src={session.user.image} className="w-8 h-8"/>
+                                                        <Avatar src={user.imageUrl} className="w-8 h-8"/>
                                                     </> : null
                                                 }
                                         </div>

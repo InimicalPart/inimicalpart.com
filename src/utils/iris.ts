@@ -13,14 +13,14 @@ export async function connectToIRIS(): Promise<typeof import('node-ipc')> {
 
 
         if (IPCSocket.connected) {
-            console.log("Already connected to IRIS");
+            if (process.env.NODE_ENV == "development") console.log("Already connected to IRIS");
             ipc = internal_ipc;
             resolve(internal_ipc);
             return;
         }
 
         ipc.of.iris.on("connect", () => {
-            console.log("Re-connected to IRIS");
+            if (process.env.NODE_ENV == "development") console.log("Re-connected to IRIS");
             ipc.of.iris.off("error", IRISNotOnline);
             ipc = internal_ipc;
             resolve(internal_ipc);

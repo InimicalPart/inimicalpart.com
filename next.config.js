@@ -1,4 +1,3 @@
-require('next-ws/server').verifyPatch();
 module.exports = {
   reactStrictMode: false,
   distDir: "build",
@@ -13,14 +12,6 @@ module.exports = {
     fetches: {
       fullUrl: true,
     },
-  },
-  async rewrites() {
-    return [
-      {
-        source: '/api/auth/:path*',
-        destination: '/api/v1/auth/:path*',
-      },
-    ]
   },
   images: {
     remotePatterns: [

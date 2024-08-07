@@ -1,5 +1,8 @@
 import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import {
+  clerkMiddleware,
+} from '@clerk/nextjs/server';
+
 
 
 const getValidSubdomain = (host?: string | null) => {
@@ -9,16 +12,17 @@ const getValidSubdomain = (host?: string | null) => {
   }
   if (host && host.includes('.')) {
     const candidate = host.split('.')[0];
-    if (candidate && !candidate.includes('localhost')) {
+    if (candidate && (!candidate.includes('localhost') && !candidate.includes(".localhost"))) {
       subdomain = candidate;
     }
   }
 
   //! Return subdomain or null if localhost, but if there is no subdomain, return "www"
-  return subdomain || ((host as string).split('.')[0].includes('localhost') ? null : "www");
+  return subdomain ?? ((host as string).split('.')[0].includes('localhost') ? null : "www");
 };
 
-export default async function middleware(req: NextRequest) {
+export default clerkMiddleware((auth, req) => {
+
   const url = req.nextUrl.clone();
 
   //! Skip public files
@@ -34,5 +38,10 @@ export default async function middleware(req: NextRequest) {
     url.pathname = `/${subdomain}${url.pathname}`;
   }
 
+  if (url.pathname.startsWith('/appeal')) auth().protect();
+
+
+
+
   return NextResponse.rewrite(url);
-}
+});

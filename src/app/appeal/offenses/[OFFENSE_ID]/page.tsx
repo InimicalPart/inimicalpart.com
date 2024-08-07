@@ -1,10 +1,7 @@
 // "use client"
 
-import { auth } from "@/utils/next-auth/auth"
-import { Button, Card, CardBody, CardHeader, Chip, Divider, Link } from "@nextui-org/react"
-import { redirect } from "next/navigation"
 import Etc from "./etc"
-import { SignIn } from "@/components/login/login"
+import { currentUser, User } from "@clerk/nextjs/server"
 
 export default async function Offense({
     params
@@ -12,8 +9,7 @@ export default async function Offense({
     params: {OFFENSE_ID: string}
 }) {
 
-    const session = await auth()
-    if (!session) return <>{SignIn()}</>
+    const user = await currentUser()
 
-    return <Etc params={params} session={session} />
+    return <Etc params={params} session={{username: user?.username as string, imageUrl: user?.imageUrl as string, firstName: user?.firstName as string, discord: {id: user?.externalAccounts[0].externalId, username: user?.externalAccounts[0].username} }}/>
 }

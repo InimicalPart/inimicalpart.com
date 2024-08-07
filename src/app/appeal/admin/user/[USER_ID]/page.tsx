@@ -1,10 +1,8 @@
-import { SignOut } from "@/components/login/signout";
-import { auth } from "@/utils/next-auth/auth";
+import SignOut from "@/components/login/signout";
 import { connectToIRIS } from "@/utils/iris";
 import { Spacer } from "@nextui-org/react";
 import Etc from "./etc";
-import { redirect } from "next/navigation";
-import { SignIn } from "@/components/login/login";
+import { currentUser } from "@clerk/nextjs/server";
 
 
 export default async function Page({
@@ -14,8 +12,7 @@ export default async function Page({
         USER_ID: string
     }
 }) {
-    const session = await auth()
-    if (!session) return <>{SignIn()}</>
+    const user = await currentUser()
 
     try {
         await connectToIRIS()
@@ -25,12 +22,12 @@ export default async function Page({
             <Spacer y={3}/>
             <p className="font-bold">IRIS is currently unavailable. Please try again later.</p>
             <Spacer y={7}/>
-            <>{SignOut()}</>
+            <SignOut/>
         </div>
     }
 
 
 
-    return <Etc session={session} userID={params.USER_ID} />
+    return <Etc session={{username: user?.username as string, imageUrl: user?.imageUrl as string, firstName: user?.firstName as string, discord: {id: user?.externalAccounts[0].externalId, username: user?.externalAccounts[0].username} }} userID={params.USER_ID} />
 
 }

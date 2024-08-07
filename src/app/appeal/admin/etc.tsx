@@ -1,41 +1,13 @@
 "use client"
 
 import Loading from "@/components/loading"
-import { getServerInfo } from "@/utils/iris"
-import { Accordion, AccordionItem, Avatar, Badge, Button, Checkbox, Chip, Divider, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Input, Link, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Spacer, Textarea, Tooltip, User, useDisclosure } from "@nextui-org/react"
-import { getSession, signOut } from "next-auth/react"
+import { Accordion, AccordionItem, Avatar, Button, Divider, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Input, Link, Spacer, Tooltip } from "@nextui-org/react"
 import { useEffect, useState } from "react"
 import prettyMilliseconds from "pretty-ms"
-import { redirect, useRouter } from "next/navigation"
-import { AdminIcon, PriorityIcon, SearchIcon, UserIcon } from "@/components/icons/misc"
+import { redirect } from "next/navigation"
+import { PriorityIcon, SearchIcon, UserIcon } from "@/components/icons/misc"
 import Image from "next/image"
-
-type Offense = {
-  id: string;
-  rule_index: number;
-  violation: string;
-  offense_count: number;
-  violated_at: string;
-  punishment_type: string;
-  status: string;
-  expires_at: string | null;
-  ends_at: string | null;
-  original_duration: string | null;
-  appeal: null | {
-    status: "OPEN" | "APPROVED" | "DENIED" | "AYR";
-    transcript: [
-      {
-        type: string,
-        message?: string,
-        status?: string,
-        timestamp: string
-        user_id: string
-      }
-    ]
-  };
-  action_taken_by: string;
-  can_appeal: boolean;
-}
+import { useClerk } from "@clerk/nextjs"
 
 
 type UInfo = {
@@ -85,12 +57,14 @@ const priorityFormula = (informationA: UInfo, informationB: UInfo): number => {
 }
 
 
-export default function Etc({ session }: { session: any }) {
+export default function Etc({ session: user }: { session: any }) {
     const appealURLPrefix = process.env.NODE_ENV == "development" ? "/appeal" : ""
-    const apiURLPrefix = process.env.NODE_ENV == "development" ? "/api" : ""
+
+    const apiLoc = process.env.NODE_ENV == "development" ? "http://appeal.localhost:3000/api" : "https://appeal.inimicalpart.com/api"
 
 
     const [loading, setLoading] = useState(true)
+    const [isSigningOut, setSigningOut] = useState(false)
     const [isAdmin, setIsAdmin] = useState(null)
     const [serverInfo, setServerInfo] = useState({} as any)
     const [nextUpdate, setNextUpdate] = useState(Date.now() + 300000)
@@ -100,19 +74,22 @@ export default function Etc({ session }: { session: any }) {
 
     const [users, setUsers] = useState<UInfo[]>([] as any)
 
+    const { signOut, redirectToUserProfile } = useClerk();
+
+
     useEffect(() => {
       Promise.all([
-      fetch(location.origin + apiURLPrefix + "/v1/appeal/user-info")
+      fetch(apiLoc + "/user-info")
       .then(res=>res.json())
       .then(data=>{
         setIsAdmin(data.admin)
       }),
-      fetch(location.origin + apiURLPrefix + "/v1/appeal/server-info")
+      fetch(apiLoc + "/server-info")
       .then(res=>res.json())
       .then(data=>{
         setServerInfo(data.serverInfo)
       }),
-      fetch(location.origin + apiURLPrefix + "/v1/appeal/admin/users")
+      fetch(apiLoc + "/admin/users")
       .then(res=>res.json())
       .then(data=>{
 
@@ -140,17 +117,17 @@ export default function Etc({ session }: { session: any }) {
       })]).then(()=>{
         setLoading(false)
       })  
-    }, [])
+    }, [appealURLPrefix, apiLoc])
 
     useEffect(() => {
         if (isAdmin === false) {
             redirect(appealURLPrefix + "/")
         }
-    }, [isAdmin])
+    }, [isAdmin, appealURLPrefix])
 
     useEffect(() => {
       const interval = setInterval(() => {
-        fetch(location.origin + apiURLPrefix + "/v1/appeal/admin/users")
+        fetch(apiLoc + "/admin/users")
         .then(res=>res.json())
         .then(data=>{
 
@@ -178,7 +155,7 @@ export default function Etc({ session }: { session: any }) {
         })
       }, nextUpdate - Date.now())
       return () => clearInterval(interval)
-    }, [nextUpdate])
+    }, [nextUpdate,  appealURLPrefix, apiLoc])
 
     useEffect(() => {
       const interval = setInterval(() => {
@@ -189,7 +166,7 @@ export default function Etc({ session }: { session: any }) {
 
 
 
-    return (loading ? <Loading/> : <div>
+    return (loading ? <Loading isSigningOut={isSigningOut}/> : <div>
       <div className="flex  w-full -mt-10 justify-end items-center mb-5 sm:mb-0">
         <Tooltip content="Switch to User Mode">
           <Link href={appealURLPrefix + "/"}>
@@ -203,18 +180,25 @@ export default function Etc({ session }: { session: any }) {
           <Avatar
             as="button"
             isBordered={true}
-            src={session.user.image}
+            src={user.imageUrl}
             className="transition-transform"
           />
         </DropdownTrigger>
         <DropdownMenu aria-label="User Actions" variant="flat">
           <DropdownItem key="profile" className="h-14 gap-2 cursor-default" isReadOnly>
             <p className="font-bold">Signed in as</p>
-            <p className="font-bold">@{session.user.username}</p>
+            <p className="font-bold">@{user.username}</p>
           </DropdownItem>
-            <DropdownItem key="logout" color="danger" className="text-danger" onClick={() => signOut()}>
-              Log Out
-            </DropdownItem>
+          <DropdownItem key="logout" color="primary" className="text-primary" onClick={() => redirectToUserProfile()}>
+             Manage Account
+          </DropdownItem>
+          <DropdownItem key="logout" color="danger" className="text-danger" onClick={() => {
+            setLoading(true)
+            setSigningOut(true)
+            signOut({ redirectUrl: '/' })
+          }}>
+            Log Out
+          </DropdownItem>
         </DropdownMenu>
       </Dropdown>
       </div>

@@ -11,13 +11,14 @@ import Image from "next/image";
 import prettyMilliseconds from "pretty-ms";
 import { redirect, useRouter } from "next/navigation";
 import { revokeOffense } from "@/utils/iris";
+import { User } from "@clerk/nextjs/dist/types/server";
 
 let converter = new showdown.Converter();
 
 export default function Etc({
     USER_ID,
     OFFENSE_ID,
-    session
+    session: user
 }: {
     USER_ID: string,
     OFFENSE_ID: string,
@@ -25,7 +26,7 @@ export default function Etc({
 }) {
 
     const appealURLPrefix = process.env.NODE_ENV == "development" ? "/appeal" : ""
-    const apiURLPrefix = process.env.NODE_ENV == "development" ? "/api" : ""
+    const apiLoc = process.env.NODE_ENV == "development" ? "http://appeal.localhost:3000/api" : "https://appeal.inimicalpart.com/api"
 
     const [loading, setLoading] = useState(true)
     const {isOpen, onOpen, onOpenChange, onClose} = useDisclosure();
@@ -121,7 +122,7 @@ export default function Etc({
     const isActive = !["APPROVED" , "DENIED"].includes(offense?.appeal?.status ?? "") && offense?.status == "APPEALED"
     useEffect(() => {
         Promise.all([
-        fetch(location.origin + apiURLPrefix + "/v1/appeal/admin/users/"+USER_ID+"/offenses/" + OFFENSE_ID)
+        fetch(apiLoc + "/admin/users/"+USER_ID+"/offenses/" + OFFENSE_ID)
         .then(res=>res.json())
         .then(data=>{
             if (data.error == "IRIS_UNAVAILABLE" || data.error == "OFFENSE_NOT_FOUND") {
@@ -130,12 +131,14 @@ export default function Etc({
             setOffense(data.offense)
             setTimeout(()=>document.getElementById("messages")?.scrollTo(0, document.getElementById("messages")?.scrollHeight as any), 150)
         }),
-        fetch(location.origin + apiURLPrefix + "/v1/appeal/admin/users/"+USER_ID+"/offenses/" + OFFENSE_ID + "/appeal/users")
+        fetch(apiLoc + "/admin/users/"+USER_ID+"/offenses/" + OFFENSE_ID + "/appeal/users")
         .then(res=>res.json())
         .then(data=>{
             if (data.error == "IRIS_UNAVAILABLE" || data.error == "OFFENSE_NOT_FOUND") {
                 return location.href = location.origin + appealURLPrefix
             }
+
+
             setUsers(data.users)
         })
     
@@ -145,12 +148,12 @@ export default function Etc({
              setNextUpdate(Date.now() + 300000)
           }
         })  
-      }, [OFFENSE_ID])
+      }, [OFFENSE_ID, USER_ID, apiLoc, appealURLPrefix, isActive])
 
       useEffect(() => {
         const interval = setInterval(() => {
             Promise.all([
-            fetch(location.origin + apiURLPrefix + "/v1/appeal/admin/users/"+USER_ID+"/offenses/" + OFFENSE_ID)
+            fetch(apiLoc + "/admin/users/"+USER_ID+"/offenses/" + OFFENSE_ID)
             .then(res=>res.json())
             .then(data=>{
                 if (data.error == "IRIS_UNAVAILABLE" || data.error == "OFFENSE_NOT_FOUND") {
@@ -161,7 +164,7 @@ export default function Etc({
                 setTimeout(()=>document.getElementById("messages")?.scrollTo(0, document.getElementById("messages")?.scrollHeight as any), 150)
     
             }),
-            fetch(location.origin + apiURLPrefix + "/v1/appeal/offenses/" + OFFENSE_ID + "/appeal/users")
+            fetch(apiLoc + "/offenses/" + OFFENSE_ID + "/appeal/users")
             .then(res=>res.json())
             .then(data=>{
                 if (data.error == "IRIS_UNAVAILABLE" || data.error == "OFFENSE_NOT_FOUND") {
@@ -178,7 +181,7 @@ export default function Etc({
             })  
         }, nextUpdate - Date.now())
         return () => clearInterval(interval)
-      }, [nextUpdate])
+      }, [nextUpdate, OFFENSE_ID, USER_ID, apiLoc, appealURLPrefix, isActive])
   
       useEffect(() => {
         let interval = null
@@ -205,7 +208,7 @@ export default function Etc({
 
     function approveAppeal() {
         setChangingStatus(true)
-        fetch(`http://localhost:3000${apiURLPrefix}/v1/appeal/admin/users/${USER_ID}/offenses/${OFFENSE_ID}/revoke`, {
+        fetch(`${apiLoc}/admin/users/${USER_ID}/offenses/${OFFENSE_ID}/revoke`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -229,7 +232,7 @@ export default function Etc({
             const newTranscript: any = [
                 {
                     type: "status",
-                    user_id: session.user.user_id,
+                    user_id: user.discord.id,
                     status: "APPROVED",
                     timestamp: new Date().toISOString()
                 }
@@ -250,7 +253,7 @@ export default function Etc({
 
     function denyAppeal() {
         setChangingStatus(true)
-        fetch(`http://localhost:3000/${apiURLPrefix}/v1/appeal/admin/users/${USER_ID}/offenses/${OFFENSE_ID}/appeal/deny`, {
+        fetch(`${apiLoc}/admin/users/${USER_ID}/offenses/${OFFENSE_ID}/appeal/deny`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -274,7 +277,7 @@ export default function Etc({
             const newTranscript: any = [
                 {
                     type: "status",
-                    user_id: session.user.user_id,
+                    user_id: user.discord.id,
                     status: "DENIED",
                     timestamp: new Date().toISOString()
                 }
@@ -299,7 +302,7 @@ export default function Etc({
         else
             setSending(true)
 
-        fetch(`http://localhost:3000/${apiURLPrefix}/v1/appeal/admin/users/${USER_ID}/offenses/${OFFENSE_ID}/appeal/messages`, {
+        fetch(`${apiLoc}/admin/users/${USER_ID}/offenses/${OFFENSE_ID}/appeal/messages`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -333,6 +336,7 @@ export default function Etc({
             if (offense?.appeal) {
               offense.appeal.transcript = data.transcript;
               offense.appeal.status = data.appeal_status
+              setUsers(data.users)
               setOffense(appealCopy)
               setTimeout(()=>document.getElementById("messages")?.scrollTo(0, document.getElementById("messages")?.scrollHeight as any), 150)
             }
