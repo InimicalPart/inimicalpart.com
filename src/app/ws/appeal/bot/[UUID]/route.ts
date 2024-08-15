@@ -73,7 +73,7 @@ export function SOCKET(
                 }
             
             }).catch((e) => {
-                console.warn("Query timed out when fetching server info from", botConfig.name + ".");
+                console.warn("Query timed out when fetching bot info from", botConfig.name + ".");
             })
 
             return;

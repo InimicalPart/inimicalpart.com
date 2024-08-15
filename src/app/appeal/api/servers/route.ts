@@ -11,7 +11,6 @@ export async function GET(req: NextRequest) {
     
     const uID = user.externalAccounts[0].externalId;
 
-    console.log("Fetching server info for", uID);
     const serverInfo = await getServerStatus(uID).catch(e=>e) as any ?? []
 
     return NextResponse.json({ servers: [...serverInfo,

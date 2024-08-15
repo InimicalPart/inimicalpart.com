@@ -19,7 +19,6 @@ export async function GET(req: NextRequest, {params}: {params: {SERVER_ID: strin
 
 
     const isAdmin = await isAdminCheck(botConnection.connection, userID).catch(e=>e)
-    console.log("isAdmin", isAdmin.result)
 
     if (isAdmin == "TIMEOUT") return NextResponse.json({ error: "QUERY_TIMEOUT", message: "Query timed out" }, { status: 500 })
 
