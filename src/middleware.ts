@@ -45,3 +45,9 @@ export default clerkMiddleware((auth, req) => {
 
   return NextResponse.rewrite(url);
 });
+
+export const config = {
+  matcher: [
+      "/((?!ws/|clerk_).*)",
+  ]
+}

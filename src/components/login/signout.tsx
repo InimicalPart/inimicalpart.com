@@ -8,7 +8,7 @@ export default function SignOut() {
     const {signOut} = useClerk()
 
   return (
-      <Button type="submit" className="w-[150px] h-8" onClick={() => signOut({redirectUrl: "/"})}>
+      <Button type="submit" className="min-w-[200px] h-8" onClick={() => signOut({redirectUrl: "/"})}>
         Sign out
       </Button>
   )

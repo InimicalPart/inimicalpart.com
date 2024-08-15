@@ -119,7 +119,7 @@ export async function toggleAppealment(user_id: string, offense_id: string) {
     return await query(type, data);
 }
 
-export async function revokeOffense(closer_id: string, offense_id: string) {
+export async function Offense(closer_id: string, offense_id: string) {
     const type = "mod:admin:offense:revoke";
     const data = {
         closer_id: closer_id,
