@@ -2,11 +2,15 @@
 
 import { useState, useEffect } from "react";
 import dayjs from "dayjs";
+import utc from 'dayjs/plugin/utc'
+import timezone from 'dayjs/plugin/timezone'
+dayjs.extend(utc);
+dayjs.extend(timezone);
 import { Skeleton } from "@nextui-org/react";
 import { chooseArticle } from "@/utils/misc";
 
 export default function RealtimeYears({
-    birthUnix = 1163622720000, // November 15, 2006,
+    birthUnix = 1163623320000, // November 15, 2006,
     cutAt = 15,
     className = "",
     addArticle = false,
@@ -25,7 +29,7 @@ export default function RealtimeYears({
 
     useEffect(() => {
         const interval = setInterval(() => {
-            const currentYears = dayjs().diff(dayjs(birthUnix), "year", true).toString();
+            const currentYears = dayjs().diff(dayjs.utc(birthUnix), "year", true).toString();
             const currentYearsSplit = currentYears.split(".");
             currentYearsSplit[1] = currentYearsSplit[1].padEnd(cutAt, "0").substring(0, cutAt);
             setYears(currentYearsSplit.join("."));

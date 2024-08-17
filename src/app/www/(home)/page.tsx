@@ -12,7 +12,7 @@ export const revalidate = 3600
 
 
 export async function generateMetadata(): Promise<Metadata> {
-  const years = dayjs().diff(dayjs(1163622720000), "year", true).toString().split(".")[0]
+  const years = dayjs().diff(dayjs.utc(1163623320000), "year", true).toString().split(".")[0]
 
   return {
     title: "Inimi",

@@ -32,6 +32,13 @@ export function SOCKET(
     global.connections[botConfig.id] = { type: "ws", connection: client, verified: false };
 
 
+    client.on('error', (err) => {
+        console.error(`${botConfig.name} (${botConfig.id}) errored:`, err);
+    });
+
+    client.on("unexpected-response", (req, res) => {
+        console.error(`${botConfig.name} (${botConfig.id}) unexpected response:`, res);
+    })
 
     client.on('message', (message) => {
         let data = null;
@@ -85,8 +92,8 @@ export function SOCKET(
         //! Bot is verified
     });
   
-    client.on('close', () => {
-        console.log(`${botConfig.name} (${botConfig.id}) disconnected`);
+    client.on('close', (c,r) => {
+        console.log(`${botConfig.name} (${botConfig.id}) disconnected: [${r}] - `, c.toString());
         delete global.connections[botConfig.id];
     });
 

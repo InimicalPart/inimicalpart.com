@@ -52,7 +52,7 @@ function getServerStatus(uID: string): Promise<{ id: string; name: string; iconU
         }
 
         Promise.all(allRequests).then(() => {
-            resolve(serversToShow);
+            resolve(serversToShow.toSorted((a, b) => a.name.localeCompare(b.name)));
         })
     })
 }

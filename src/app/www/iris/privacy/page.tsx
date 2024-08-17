@@ -77,7 +77,7 @@ export default function IRISPrivacy() {
         <br/>
         Deletion of your personal information occurs automatically if you leave all servers associated with IRIS. Some information such as server rule offenses might not be deleted due to the requirements of the bot&apos;s functionality.
         <br/><br/>
-        To request a copy of your personal data, please contact us at <a href="me@inimicalpart.com" className="font-semibold underline">me@inimicalpart.com</a>.
+        To request a copy of your personal data, please contact us at <a href="contact@inimicalpart.com" className="font-semibold underline">contact@inimicalpart.com</a>.
         <br/><br/>
         <h3 className="font-bold text-xl">8. Children&apos;s Privacy</h3>
         Our bot is not intended for use by individuals under the age of 13. We do not knowingly collect personal information from children under 13. If we become aware that we have collected personal information from a child under 13, we will take steps to delete such information.
@@ -92,7 +92,7 @@ export default function IRISPrivacy() {
         <br/>
 
         <ul className="m-0 p-[revert] list-disc">
-            <li><b>Email</b>: <a href="me@inimicalpart.com" className="font-semibold underline">me@inimicalpart.com</a></li>
+            <li><b>Email</b>: <a href="contact@inimicalpart.com" className="font-semibold underline">contact@inimicalpart.com</a></li>
         </ul>
         <br/>
         <h3 className="font-bold text-xl">12. Consent</h3>

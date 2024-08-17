@@ -45,7 +45,6 @@ export async function GET(request: NextRequest) {
             {
                 headers: {
                     "Content-Type": "text/html",
-                    "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline' cdn.jsdelivr.net; form-action 'self'; frame-ancestors 'self'; base-uri 'self'; font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com https://cdn.jsdelivr.net; object-src 'none'; style-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com https://cdn.jsdelivr.net 'unsafe-inline'; img-src 'self' inimicalpart.com https://www.inimicalpart.com" 
                 },
                 status: 200
             }
@@ -90,14 +89,15 @@ export async function GET(request: NextRequest) {
         const wordSplitter = /(?<=[a-zA-Z])\\s/g
 
         // Initializer
-        let birthDnT = new Date(${settings.birthUnix})
+        let birthUnix = ${settings.birthUnix}
+        let birthDnT = new Date(birthUnix)
         let untilAge = ${settings.untilAge}
 
         // Confetti and Birthday Title Setup
         let secondsUntilBirthday = null;
         let celebrationTime = false;
         let celebrationTitleChanger = null;
-        let turnsAge = dayjs().diff(dayjs(birthDnT.getTime()), "year", true)+1
+        let turnsAge = dayjs().diff(dayjs.utc(birthUnix), "year", true)+1
 
         setInterval(() => {
           secondsUntilBirthday = (nextBirthday(new Date(${settings.birthUnix})) - new Date()) / 1000;
@@ -221,7 +221,7 @@ export async function GET(request: NextRequest) {
           generator += `
           // Years
           setInterval(() => {
-            let time = dayjs().diff(dayjs(birthDnT.getTime()), "year", true).toString();
+            let time = dayjs().diff(dayjs.utc(birthUnix), "year", true).toString();
             let temp = String(time).split(".");
             temp[1] = String(temp[1]).padEnd(15, "0") ?? 0;
             ${settings.changeCountdownText ? `if (!celebrationTime)` : ""}
@@ -288,7 +288,9 @@ export async function GET(request: NextRequest) {
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <title></title>
-          <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.12/dayjs.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.12/plugin/timezone.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.12/plugin/utc.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/@lyo/pretty-ms@4.0.0/pretty-ms.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
           <link rel="icon" type="image/x-icon" href="https://www.inimicalpart.com/favicon.ico" />
@@ -322,6 +324,9 @@ export async function GET(request: NextRequest) {
           <p id="birthday"></p>
 
           <script>
+            dayjs.extend(window.dayjs_plugin_utc)
+            dayjs.extend(window.dayjs_plugin_timezone)
+
             ${generator}
           </script>
         </body>

@@ -1,4 +1,8 @@
 import dayjs from "dayjs";
+import utc from 'dayjs/plugin/utc'
+import timezone from 'dayjs/plugin/timezone'
+dayjs.extend(utc);
+dayjs.extend(timezone);
 import { NextRequest, NextResponse } from "next/server";
 import prettyMs from "pretty-ms";
 import sharp from "sharp";
@@ -170,7 +174,7 @@ export async function GET(request: NextRequest) {
 
             time = "" + seconds * 1000;
           } else if (type == "years") {
-            time = dayjs().diff(dayjs(birthDnT.getTime()), "year", true).toString();
+            time = dayjs().diff(dayjs.utc(birthUnix), "year", true).toString();
 
             let temp = String(time).split(".");
             temp[1] = String(temp[1]).padEnd(15, "0") ?? "0";
@@ -181,7 +185,7 @@ export async function GET(request: NextRequest) {
               for (var i = birthDnT.getFullYear(); i <= currentDnT.getFullYear(); i++) {
                   if (isLeapYear(i)) addDays++
               }
-
+              dayjs().diff(dayjs.utc(birthUnix), "year", true).toString()
               //! Add the leap days to the birthday
               birthDnT.setDate(birthDnT.getDate() + addDays)
 

@@ -37,7 +37,7 @@ export default function Page() {
                                 <Card key={server.id} className="w-full h-20 bg-neutral-800" isPressable onClick={() => router.push(`/servers/${server.id}/offenses`)}>
                                     <CardBody className="py-0 justify-center">
                                         <div className="flex flex-row items-center gap-3">
-                                            <Avatar src={server.icon} size="md" />
+                                            <Avatar src={server.iconURL} size="md" />
                                             <div className="flex flex-col justify-center">
                                                 <h1 className="font-semibold text-ellipsis line-clamp-1">{server.name}</h1>
                                                 <h1 className="text-gray-500 text-sm">{server.id}</h1>

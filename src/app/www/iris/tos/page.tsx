@@ -62,7 +62,7 @@ export default function IRISToS() {
         <br/><br/>
 
         <h3 className="font-bold text-xl">12. Contact Information</h3>
-        If you have any questions about these Terms of Service, please contact us at <a href="mailto:me@inimicalpart.com" className="font-semibold underline">me@inimicalpart.com</a>.
+        If you have any questions about these Terms of Service, please contact us at <a href="mailto:contact@inimicalpart.com" className="font-semibold underline">contact@inimicalpart.com</a>.
 
         <Divider className="h-1 my-5"/>
 
