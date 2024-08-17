@@ -1,5 +1,9 @@
 import { chooseArticle } from "@/utils/misc"
-import dayjs from "dayjs"
+import dayjs from "dayjs";
+import utc from 'dayjs/plugin/utc'
+import timezone from 'dayjs/plugin/timezone'
+dayjs.extend(utc);
+dayjs.extend(timezone);
 import { Metadata } from "next"
 
 export async function generateMetadata(): Promise<Metadata> {

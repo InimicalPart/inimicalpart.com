@@ -4,6 +4,10 @@ import ProjectCard from "@/components/main/projectCard";
 import { Tooltip } from "@nextui-org/tooltip";
 import { Metadata } from "next";
 import dayjs from "dayjs";
+import utc from 'dayjs/plugin/utc'
+import timezone from 'dayjs/plugin/timezone'
+dayjs.extend(utc);
+dayjs.extend(timezone);
 import { chooseArticle } from "@/utils/misc";
 
 export const revalidate = 3600

@@ -1,4 +1,8 @@
 import dayjs from "dayjs";
+import utc from 'dayjs/plugin/utc'
+import timezone from 'dayjs/plugin/timezone'
+dayjs.extend(utc);
+dayjs.extend(timezone);
 import { chooseArticle } from "@/utils/misc";
 import { Metadata } from "next";
 import IRISGrantCode from "@/components/iris-grant";
