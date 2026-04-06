@@ -19,7 +19,9 @@ export default function ProjectCard({
           <Card className="w-[350px] h-[300px] bg-[#f5f3ee]/90 dark:bg-neutral-900/80 border border-neutral-200/60 dark:border-neutral-800/40 backdrop-blur-sm" isPressable onPress={() => window.open(`https://github.com/${owner}/${repo}`, "_blank")}>
           <CardHeader className="flex flex-row">
               <GithubIcon/>
-              <p className="ml-2 text-sm text-neutral-500 dark:text-neutral-400 text-ellipsis truncate">github.com/{owner}/{repo}</p>
+              <Tooltip showArrow delay={0} closeDelay={100} content={`https://github.com/${owner}/${repo}`}>
+                <p className="ml-2 text-sm text-neutral-500 dark:text-neutral-400 text-ellipsis truncate">github.com/{owner}/{repo}</p>
+              </Tooltip>
           </CardHeader>
           <Divider className="opacity-50 -mt-1 mb-1"/>
           <CardBody>

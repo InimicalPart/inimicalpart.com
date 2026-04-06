@@ -87,7 +87,7 @@ export default function InimiNavbar({
           )
           setMenuItems(
             pages.map((page, index) => (
-              <NavbarMenuItem key={index}>
+              <NavbarMenuItem key={index} isActive={pathname == page.href}>
               <NextLink
                 className={clsx(
                   linkStyles({ color: (pathname == page.href) ? "primary" : "foreground" }),
@@ -114,7 +114,8 @@ export default function InimiNavbar({
         />
         <NextLink href="/">
           <NavbarBrand>
-            <p className="font-serif font-bold text-inherit text-lg">Inimi</p>
+            <InimiLogo size={{width: 36, height: 36}}/>
+            <p className="font-serif font-bold text-inherit">Inimi</p>
           </NavbarBrand>
         </NextLink>
       </NavbarContent>
