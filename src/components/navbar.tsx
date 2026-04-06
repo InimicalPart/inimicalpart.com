@@ -1,7 +1,6 @@
 "use client"
 
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenu, NavbarMenuItem, NavbarMenuToggle} from "@nextui-org/navbar";
-import InimiLogo from "./icons/inimi";
 import React, { useEffect, useMemo } from "react";
 import NextLink from "next/link";
 import { link as linkStyles } from "@nextui-org/theme";

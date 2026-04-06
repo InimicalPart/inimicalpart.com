@@ -9,7 +9,11 @@ module.exports = {
     './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}'
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        serif: ["var(--font-playfair)", "Georgia", "serif"],
+      },
+    },
     screens: {
       sm: "640px",
       md: "768px",

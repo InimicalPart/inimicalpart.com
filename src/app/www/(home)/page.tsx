@@ -83,7 +83,7 @@ export default async function Home() {
             <div className="text-neutral-500 dark:text-neutral-400 text-[0.6rem] uppercase tracking-[0.4em] mb-2 font-medium">
               time alive
             </div>
-            <Tooltip showArrow content={<RealtimeYears /> cutAt={12} placement="bottom" closeDelay={100} delay={0}>
+            <Tooltip showArrow content={<RealtimeYears cutAt={12} />} placement="bottom" closeDelay={100} delay={0}>
               <div className="inline-flex cursor-default">
                 <RealtimeYears cutAt={10} boldYears={true} addArticle={true} />
               </div>

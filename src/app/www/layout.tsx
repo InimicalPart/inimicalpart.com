@@ -2,7 +2,7 @@ import "@/styles/globals.css";
 import { Viewport } from "next";
 import { Providers } from "@/components/providers";
 import InimiNavbar from "@/components/navbar";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Playfair_Display } from "next/font/google";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
