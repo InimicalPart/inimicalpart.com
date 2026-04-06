@@ -106,7 +106,7 @@ export default function InimiNavbar({
 
 
     return (
-        <Navbar position="static" isBordered className="dark:bg-black bg-neutral-100" onMenuOpenChange={noItems ? undefined : setIsMenuOpen}>
+        <Navbar position="static" isBordered className="bg-[#FAF8F4]/80 dark:bg-[#0a0a0a]/80 backdrop-blur-md border-neutral-200/40 dark:border-neutral-800/40" onMenuOpenChange={noItems ? undefined : setIsMenuOpen}>
       <NavbarContent>
       <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -115,8 +115,7 @@ export default function InimiNavbar({
         />
         <NextLink href="/">
           <NavbarBrand>
-            <InimiLogo size={{width: 36, height: 36}}/>
-            <p className="font-bold text-inherit">Inimi</p>
+            <p className="font-serif font-bold text-inherit text-lg">Inimi</p>
           </NavbarBrand>
         </NextLink>
       </NavbarContent>

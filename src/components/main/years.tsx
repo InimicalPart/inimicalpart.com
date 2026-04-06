@@ -46,5 +46,17 @@ export default function RealtimeYears({
             clearInterval(interval);
         };
     }, [birthUnix, cutAt, loading, addArticle, previousYears]);
-    return <Skeleton className={("mx-1 rounded-md " + className).trim()} isLoaded={!loading}>{article} {boldYears ? <b>{years}</b> : years}</Skeleton>;
+
+    // tabular-nums trick: monospace digits prevent layout shift as numbers change
+    const numericContent = (
+        <span className="font-mono tabular-nums tracking-[-0.04em]">
+            {years}
+        </span>
+    );
+
+    return (
+        <Skeleton className={("mx-1 rounded-md " + className).trim()} isLoaded={!loading}>
+            {article} {boldYears ? <b className="font-mono tabular-nums">{years}</b> : numericContent}
+        </Skeleton>
+    );
 }
