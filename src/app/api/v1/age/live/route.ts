@@ -288,11 +288,11 @@ export async function GET(request: NextRequest) {
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <title></title>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.12/dayjs.min.js"></script>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.12/plugin/timezone.min.js"></script>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.12/plugin/utc.min.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/@lyo/pretty-ms@4.0.0/pretty-ms.min.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.12/dayjs.min.js" defer></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.12/plugin/timezone.min.js" defer></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.12/plugin/utc.min.js" defer></script>
+          <script src="https://cdn.jsdelivr.net/npm/@lyo/pretty-ms@4.0.0/pretty-ms.min.js" defer></script>
+          <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
           <link rel="icon" type="image/x-icon" href="https://www.inimi.dev/favicon.ico" />
           <style>
             body {

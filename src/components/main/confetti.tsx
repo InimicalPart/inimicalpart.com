@@ -1,85 +1,200 @@
 "use client"
 import confetti from "canvas-confetti";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
+const birthdayUnix = new Date(1163545200000);
+const birthdayDate = new Date(birthdayUnix);
+const konamiCode = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a", "Enter"];
 
 export default function Confetti() {
-    function HBD_Confetti() {
-        var duration = 10 * 1000;
-        var animationEnd = Date.now() + duration;
-        var defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
-    
-        function randomInRange(min: number, max: number) {
-          return Math.random() * (max - min) + min;
-        }
-    
-        var interval: NodeJS.Timeout = setInterval(function () {
-          var timeLeft = animationEnd - Date.now();
-    
-          if (timeLeft <= 0) {
-            return clearInterval(interval);
-          }
-    
-          var particleCount = 125 * (timeLeft / duration);
-          // since particles fall down, start a bit higher than random
-          confetti(
-            Object.assign({}, defaults, {
-              particleCount,
-              origin: { x: randomInRange(0.1, 0.5), y: Math.random() - 0.2 },
-            })
-          );
-          confetti(
-            Object.assign({}, defaults, {
-              particleCount,
-              origin: { x: randomInRange(0.5, 0.9), y: Math.random() - 0.2 },
-            })
-          );
-        }, 250);
+  const konamiBuffer = useRef<string[]>([]);
+  const originalTitle = useRef<string>("");
+  const [birthdayMode, setBirthdayMode] = useState(false);
+  const [konamiBirthdayMode, setKonamiBirthdayMode] = useState(false);
+
+  function launchConfetti(showFinale = false) {
+    const duration = showFinale ? 12 * 1000 : 9 * 1000;
+    const animationEnd = Date.now() + duration;
+    const defaults = showFinale
+      ? { startVelocity: 38, spread: 360, ticks: 90, zIndex: 0 }
+      : { startVelocity: 30, spread: 320, ticks: 80, zIndex: 0 };
+
+    function randomInRange(min: number, max: number) {
+      return Math.random() * (max - min) + min;
+    }
+
+    const interval = setInterval(function () {
+      const timeLeft = animationEnd - Date.now();
+
+      if (timeLeft <= 0) {
+        return clearInterval(interval);
       }
 
-      function nextBirthday(date: Date) {
-        let thisYearBd: Date | number = new Date(
-          date.getMonth() +
-            1 +
-            "/" +
-            date.getDate() +
-            "/" +
-            new Date().getFullYear() +
-            " " +
-            date.getHours() +
-            ":" +
-            date.getMinutes() +
-            ":" +
-            date.getSeconds()
+      const particleCount = (showFinale ? 170 : 130) * (timeLeft / duration);
+
+      confetti(
+        Object.assign({}, defaults, {
+          particleCount: particleCount * 0.9,
+          colors: showFinale ? ["#ff7a18", "#ffd166", "#06d6a0", "#118ab2", "#ef476f"] : undefined,
+          origin: { x: randomInRange(0.08, 0.42), y: Math.random() - 0.18 },
+        })
+      );
+      confetti(
+        Object.assign({}, defaults, {
+          particleCount: particleCount * 0.9,
+          colors: showFinale ? ["#ffb703", "#fb8500", "#f72585", "#4cc9f0"] : undefined,
+          origin: { x: randomInRange(0.58, 0.92), y: Math.random() - 0.18 },
+        })
+      );
+      confetti(
+        Object.assign({}, defaults, {
+          particleCount: particleCount * (showFinale ? 0.8 : 0.6),
+          spread: showFinale ? 100 : defaults.spread,
+          origin: { x: 0.5, y: Math.random() - 0.28 },
+        })
+      );
+
+      if (showFinale) {
+        confetti(
+          Object.assign({}, defaults, {
+            particleCount: particleCount * 0.35,
+            spread: 140,
+            scalar: 1.1,
+            origin: { x: randomInRange(0.2, 0.8), y: 0.35 },
+          })
         );
-        // console.log(thisYearBd)
-        if (thisYearBd < new Date()) {
-          thisYearBd = thisYearBd.setFullYear(thisYearBd.getFullYear() + 1);
-        }
-        if (thisYearBd instanceof Date) {
-          return thisYearBd.getTime();
-        } else {
-          return thisYearBd;
-        }
       }
+    }, showFinale ? 180 : 250);
+  }
 
+  function isBirthdayToday() {
+    return new Date().getMonth() === birthdayDate.getMonth() && new Date().getDate() === birthdayDate.getDate();
+  }
 
-    const [celebration, setCelebration] = useState(false);
-    useEffect(() => {
-        const interval = setInterval(() => {
-            const birthday = nextBirthday(new Date(1163545200000));
-            if (birthday - Date.now() < 500 && !celebration) {
-                HBD_Confetti();
-                setCelebration(true);
-            } else if (birthday - Date.now() > 500 && celebration) {
-                setCelebration(false);
+  function birthdayAge() {
+    const today = new Date();
+    let age = today.getFullYear() - birthdayDate.getFullYear();
+
+    if (
+      today.getMonth() < birthdayDate.getMonth() ||
+      (today.getMonth() === birthdayDate.getMonth() && today.getDate() < birthdayDate.getDate())
+    ) {
+      age -= 1;
+    }
+
+    return age;
+  }
+
+  function birthdayOrdinal(age: number) {
+    const remainder = age % 100;
+
+    if (remainder >= 11 && remainder <= 13) {
+      return "th";
+    }
+
+    switch (age % 10) {
+      case 1:
+        return "st";
+      case 2:
+        return "nd";
+      case 3:
+        return "rd";
+      default:
+        return "th";
+    }
+  }
+
+  function birthdayTitle() {
+    const age = birthdayAge();
+    const suffix = birthdayOrdinal(age).toUpperCase();
+    return `IT'S INIMI'S ${age}${suffix} BIRTHDAY!`;
+  }
+
+  function birthdayConfettiKey() {
+    const today = new Date();
+    return `birthday-confetti-${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+  }
+
+  function hasPlayedBirthdayConfettiToday() {
+    return window.localStorage.getItem(birthdayConfettiKey()) === "1";
+  }
+
+  function markBirthdayConfettiPlayedToday() {
+    window.localStorage.setItem(birthdayConfettiKey(), "1");
+  }
+
+  function triggerKonamiBirthdayMode() {
+    setKonamiBirthdayMode(true);
+    launchConfetti(true);
+
+    window.setTimeout(() => {
+      setKonamiBirthdayMode(false);
+    }, 20 * 1000);
+  }
+
+  useEffect(() => {
+    const syncBirthdayMode = () => {
+      const isBirthday = isBirthdayToday();
+      setBirthdayMode(isBirthday || konamiBirthdayMode);
+
+      if (isBirthday && !hasPlayedBirthdayConfettiToday()) {
+        markBirthdayConfettiPlayedToday();
+        launchConfetti(true);
+      }
+    };
+
+    syncBirthdayMode();
+
+    const interval = setInterval(syncBirthdayMode, 60 * 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [konamiBirthdayMode]);
+
+  useEffect(() => {
+    if (!birthdayMode) {
+      return;
+    }
+
+    if (!originalTitle.current) {
+      originalTitle.current = document.title;
+    }
+
+    let blinkState = false;
+    document.title = `${birthdayTitle()} 🎉`;
+
+    const interval = window.setInterval(() => {
+      blinkState = !blinkState;
+      document.title = blinkState ? `${birthdayTitle()} 🎉` : birthdayTitle();
+    }, 250);
+
+    return () => {
+      window.clearInterval(interval);
+      document.title = originalTitle.current || document.title;
+    };
+  }, [birthdayMode]);
+
+        useEffect(() => {
+          const handleKeyDown = (event: KeyboardEvent) => {
+            const key = event.key.length === 1 ? event.key.toLowerCase() : event.key;
+
+            konamiBuffer.current = [...konamiBuffer.current, key].slice(-konamiCode.length);
+
+            const matched = konamiCode.every((expectedKey, index) => konamiBuffer.current[index] === expectedKey);
+
+            if (matched) {
+              konamiBuffer.current = [];
+              triggerKonamiBirthdayMode();
             }
-        },100)
-        return () => {
-            if (interval) {
-                clearInterval(interval);
-            }
-        }
-    }, [celebration]);
+          };
+
+          window.addEventListener("keydown", handleKeyDown);
+
+          return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+          };
+        }, []);
 
     return null;
 }
