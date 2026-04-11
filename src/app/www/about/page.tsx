@@ -1,9 +1,13 @@
 import { chooseArticle } from "@/utils/misc"
-import dayjs from "dayjs"
+import dayjs from "dayjs";
+import utc from 'dayjs/plugin/utc'
+import timezone from 'dayjs/plugin/timezone'
+dayjs.extend(utc);
+dayjs.extend(timezone);
 import { Metadata } from "next"
 
 export async function generateMetadata(): Promise<Metadata> {
-  const years = dayjs().diff(dayjs(1163622720000), "year", true).toString().split(".")[0]
+  const years = dayjs().diff(dayjs.utc(1163545200000), "year", true).toString().split(".")[0]
 
   return {
     title: "About Inimi",
@@ -12,13 +16,13 @@ export async function generateMetadata(): Promise<Metadata> {
       title: "Inimi",
       description: `The official website of Inimi, ${chooseArticle(years)} ${years}-year-old full-stack developer.`,
       type: 'website',
-      url: 'https://inimicalpart.com',
+      url: 'https://inimi.dev',
     },
     twitter: {
       card: "summary",
       images: [
         {
-          url: 'https://inimicalpart.com/logo.png',
+          url: 'https://inimi.dev/logo.png',
           width: 64,
           height: 64,
           alt: 'Inimi\'s logo',
@@ -30,13 +34,11 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function About() {
   return <>
-    <div className="text-center -mt-4 flex flex-col">
-    <h1 className="text-2xl font-bold">About Inimi</h1>
-    <p className="text-md"><i>The Backstory</i></p>
-    <br/>
-    <p className="text-md mt-4 text-left">
+    <div className="mx-auto flex max-w-4xl flex-col rounded-3xl border border-black/10 bg-white/60 px-6 py-8 shadow-lg backdrop-blur-sm dark:border-white/10 dark:bg-black/35 sm:px-10">
+    <h1 className="text-center text-3xl font-bold tracking-tight sm:text-4xl">About Inimi</h1>
+    <p className="mt-2 text-center text-sm uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">The Backstory</p>
+    <p className="mt-8 text-left text-base leading-8 text-neutral-800 dark:text-neutral-200">
       At the young age of 10, Inimi started his journey in the world of programming.
-      <br/>
       <br/>
       <br/>
       Inimi was interested in creating Discord bots, as he was always curious how Discord bots worked and how hard it was to make one. The idea of creating his own bot to his specifications was also fascinating to him. He searched YouTube for tutorials on how to create a Discord bot. He wished that creating one would be a piece of cake, but he was wrong. All the tutorials featured coding, which he had never heard of before. Inimi thought programming looked difficult, so he decided to keep searching for an easier method.
@@ -72,7 +74,7 @@ export default async function About() {
       Inimi&apos;s passion for programming grew stronger over time, leading him to work on bigger projects that required more time and effort. He was determined to make his projects the best they could be and was willing to put in the necessary time and effort.
       <br/>
       <br/>
-      Until we come to the present day, Inimi is now a full-stack developer with a passion for creating software that is both unique and innovative. He is always looking for new challenges to overcome and new things to learn.
+      Until we come to the present day, Inimi became a full-time full-stack developer in February 2026 and has been actively working and expanding with them ever since. He continues to have a passion for creating software that is both unique and innovative, and is always looking for new challenges to overcome and new things to learn.
 
 
     </p>

@@ -1,3 +1,47 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@config "../../tailwind.config.js";
+@import "tailwindcss";
+@import "@heroui/styles";
+
+:root {
+	--bg-main-light: #f3f7fb;
+	--bg-main-dark: #090d14;
+}
+
+* {
+	scrollbar-width: thin;
+}
+
+html,
+body {
+	min-height: 100%;
+}
+
+body {
+	font-family: var(--font-space), "Avenir Next", "Segoe UI", sans-serif;
+	background:
+		radial-gradient(40rem 40rem at -10% -10%, rgb(99 102 241 / 0.18), transparent 60%),
+		radial-gradient(40rem 40rem at 120% 10%, rgb(16 185 129 / 0.14), transparent 55%),
+		radial-gradient(36rem 36rem at 50% 120%, rgb(14 165 233 / 0.12), transparent 55%),
+		var(--bg-main-light);
+	color: rgb(23 23 23);
+	font-feature-settings: "ss01" on, "ss02" on;
+}
+
+.dark body {
+	background:
+		radial-gradient(40rem 40rem at -10% -10%, rgb(99 102 241 / 0.22), transparent 60%),
+		radial-gradient(40rem 40rem at 120% 10%, rgb(16 185 129 / 0.18), transparent 55%),
+		radial-gradient(36rem 36rem at 50% 120%, rgb(56 189 248 / 0.14), transparent 55%),
+		var(--bg-main-dark);
+	color: rgb(229 229 229);
+}
+
+code,
+pre,
+kbd {
+	font-family: var(--font-mono), "SFMono-Regular", "Consolas", monospace;
+}
+
+::selection {
+	background: rgb(14 165 233 / 0.3);
+}

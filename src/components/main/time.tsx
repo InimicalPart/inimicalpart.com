@@ -1,12 +1,14 @@
 "use client"
-import { Skeleton } from '@nextui-org/react';
+import { Skeleton } from "@heroui/react/skeleton";
 import moment from 'moment-timezone';
 import { useEffect, useState } from 'react';
 
 export default function TimeForInimi({
-    format = "h:mm:ss A"
+    format = "h:mm:ss A",
+    bold = true,
 }: {
-    format?: string
+    format?: string,
+    bold?: boolean
 }) {
     const [time, setTime] = useState("12:00:00?"); // "?" is a placeholder, to make it smoother when the time is loaded
     const [loading, setLoading] = useState(true);
@@ -31,6 +33,6 @@ export default function TimeForInimi({
         return () => clearInterval(interval);
     },[useFormat, loading]);
 
-    return <Skeleton className="mx-1 rounded-md" isLoaded={!loading}>{time}</Skeleton>
+    return loading ? <Skeleton className="mx-1 h-4.5 w-22 rounded-lg" /> : <span className="mx-1 font-mono">{bold ? <b>{time}</b> : time}</span>
 
 }

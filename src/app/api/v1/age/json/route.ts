@@ -33,33 +33,24 @@ export async function GET(request: NextRequest) {
           }
         }
 
-          let imageBuffer: any;
+        return NextResponse.json({
+            years: parseFloat(await get("years", unixBirth, untilAge) as string),
+            nextBirthday: new Date(nextBirthday(unixDate)).toISOString(),
+            turnsAge: parseInt((await get("years", unixBirth, untilAge) as string).split(".")[0])+1,
+            secondsLeft: parseFloat(await get("seconds", unixBirth, untilAge) as string),
+            minutesLeft: parseFloat(await get("minutes", unixBirth, untilAge) as string),
+            hoursLeft: parseFloat(await get("hours", unixBirth, untilAge) as string),
+            daysLeft: parseFloat(await get("days", unixBirth, untilAge) as string),
+            weeksLeft: parseFloat(await get("weeks", unixBirth, untilAge) as string),
+            monthsLeft: parseFloat(await get("months", unixBirth, untilAge) as string),
+            millisecondsLeft: parseInt(await get("milliseconds", unixBirth, untilAge) as string),
+            pretty: await get("pretty", unixBirth, untilAge),
+            prettyF: await get("prettyF", unixBirth, untilAge),
+            prettyLeft: await get("prettyLeft", unixBirth, untilAge),
+            prettyFLeft: await get("prettyFLeft", unixBirth, untilAge),
 
-               if (Array.from(query.keys()).includes("years"))            imageBuffer = await makeIMG("years",        unixBirth, undefined, fontSize);
-          else if (Array.from(query.keys()).includes("pretty"))           imageBuffer = await makeIMG("pretty",       unixBirth, undefined, fontSize);
-          else if (Array.from(query.keys()).includes("prettyF"))          imageBuffer = await makeIMG("prettyF",      unixBirth, undefined, fontSize);
-          else if (Array.from(query.keys()).includes("millisecondsLeft")) imageBuffer = await makeIMG("milliseconds", unixBirth, untilAge,  fontSize);
-          else if (Array.from(query.keys()).includes("secondsLeft"))      imageBuffer = await makeIMG("seconds",      unixBirth, untilAge,  fontSize);
-          else if (Array.from(query.keys()).includes("minutesLeft"))      imageBuffer = await makeIMG("minutes",      unixBirth, untilAge,  fontSize);
-          else if (Array.from(query.keys()).includes("hoursLeft"))        imageBuffer = await makeIMG("hours",        unixBirth, untilAge,  fontSize);
-          else if (Array.from(query.keys()).includes("daysLeft"))         imageBuffer = await makeIMG("days",         unixBirth, untilAge,  fontSize);
-          else if (Array.from(query.keys()).includes("weeksLeft"))        imageBuffer = await makeIMG("weeks",        unixBirth, untilAge,  fontSize);
-          else if (Array.from(query.keys()).includes("monthsLeft"))       imageBuffer = await makeIMG("months",       unixBirth, untilAge,  fontSize);
-          else if (Array.from(query.keys()).includes("prettyLeft"))       imageBuffer = await makeIMG("prettyLeft",   unixBirth, untilAge,  fontSize);
-          else if (Array.from(query.keys()).includes("prettyFLeft"))      imageBuffer = await makeIMG("prettyFLeft",  unixBirth, untilAge,  fontSize);
-          else imageBuffer = await makeIMG("years", unixBirth, undefined, fontSize);
+        }, { status: 200 });
 
-        return new NextResponse(imageBuffer, {
-            headers: {
-                "Content-Type": "image/png",
-                "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0",
-                "X-NoExpire": "yes",
-                "Etag": "off",
-                "If_modified_since": "off",
-                "Last-Modified": new Date().toUTCString(),
-            },
-            status: 200,
-        })
       } catch (e) {
           console.log(e);
           return new NextResponse("An unexpected error occurred. Please try again later.", {
@@ -83,7 +74,8 @@ export async function GET(request: NextRequest) {
   function isLeapYear(year: number) {return ((year%4)==0&&!((year%400)!==0&&(year%100)==0))}
 
 
-  async function makeIMG(type: string, birthUnix: string | number | Date, untilAge: number | null = null, fontSize: number = 50) {
+
+  async function get(type: string, birthUnix: string | number | Date, untilAge: number | null = null) {
     return new Promise(async (resolve, _reject) => {
           var time: string;
           var seconds: number;
@@ -216,32 +208,6 @@ export async function GET(request: NextRequest) {
             throw new Error("Invalid type")
           }
 
-          const width = fontSize * 12 < 2000 ? 2000 : fontSize * 12
-          const height = fontSize * 2 < 1000 ? 1000 : fontSize * 2
-
-          //! Create the image
-          let img = sharp({
-            create: {
-              width,
-              height,
-              channels: 4,
-              background: { r: 0, g: 0, b: 0, alpha: 0 }
-            }
-          }).png()
-
-          
-          //! Add text
-          img.composite([{
-            input: Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}">
-            <text x="5" y="${fontSize-5 < 1 ? 5 : fontSize-5}" font-family="Arial" font-size="${fontSize}" fill="white">${time}</text>
-            </svg>`),
-            gravity: "northwest"
-          }])
-
-            //! Trim the image
-            const newImage = sharp(await img.toBuffer()).trim()
-
-            //! Return the image
-            resolve(await newImage.toBuffer());
+            resolve(time)
         })
 }
