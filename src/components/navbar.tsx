@@ -53,7 +53,7 @@ export default function InimiNavbar({
   )
 
   return (
-    <header className="sticky top-0 z-40 border-b border-black/10 bg-white/70 backdrop-blur-xl dark:border-white/10 dark:bg-black/55">
+    <header className="navbar-glass sticky top-0 z-40">
       <nav className="relative mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
         <NextLink href="/" className="group flex items-center gap-2 text-inherit">
           <InimiLogo size={{ width: 36, height: 36 }} />
@@ -62,7 +62,7 @@ export default function InimiNavbar({
 
         {!noItems ? (
           <>
-            <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-7 rounded-full border border-black/10 bg-white/70 px-5 py-2 shadow-sm backdrop-blur-md dark:border-white/10 dark:bg-white/5 sm:flex">
+            <div className="glass absolute left-1/2 hidden -translate-x-1/2 items-center gap-7 rounded-full px-5 py-2 sm:flex">
               {pages.map((page) => (
                 <span key={page.href}>{renderLink(page, "text-sm")}</span>
               ))}
@@ -75,7 +75,7 @@ export default function InimiNavbar({
                 aria-expanded={isMenuOpen}
                 aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                 onClick={() => setIsMenuOpen((open) => !open)}
-                className="inline-flex items-center rounded-xl border border-black/10 bg-white/60 px-3 py-2 text-sm font-medium transition-colors hover:bg-black/5 dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10 sm:hidden"
+                className="glass inline-flex items-center rounded-xl px-3 py-2 text-sm font-medium transition-colors hover:bg-white/10 sm:hidden"
               >
                 Menu
               </button>
@@ -87,7 +87,7 @@ export default function InimiNavbar({
       </nav>
 
       {!noItems && isMenuOpen ? (
-        <div className="border-t border-black/5 px-4 py-3 dark:border-white/10 sm:hidden">
+        <div className="glass border-t px-4 py-3 sm:hidden">
           <div className="flex flex-col items-center gap-3">
             {pages.map((page) => (
               <span key={page.href}>{renderLink(page, "text-lg")}</span>

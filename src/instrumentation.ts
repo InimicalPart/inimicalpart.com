@@ -13,19 +13,24 @@ export async function register() {
 
         const botConfPath = thirdPaths[process.platform as keyof typeof thirdPaths] || thirdPaths["linux"];
 
-        if (!fs.existsSync(botConfPath)) {
-            console.log("Bot config not found, creating one at", botConfPath);
-            fs.mkdirSync(botConfPath.split("/").slice(0, -1).join("/"), { recursive: true });
-            fs.writeFileSync(botConfPath, JSON.stringify({}));
-        }
-        
-        const botConf = JSON.parse(fs.readFileSync(botConfPath, "utf-8").toString());
+        try {
+            if (!fs.existsSync(botConfPath)) {
+                console.log("Bot config not found, creating one at", botConfPath);
+                fs.mkdirSync(botConfPath.split("/").slice(0, -1).join("/"), { recursive: true });
+                fs.writeFileSync(botConfPath, JSON.stringify({}));
+            }
 
-        global.botConfig = botConf;
+            const botConf = JSON.parse(fs.readFileSync(botConfPath, "utf-8").toString());
+            global.botConfig = botConf;
+        } catch (e: any) {
+            console.warn("Could not load bot config:", e.message);
+            global.botConfig = {};
+        }
+
         global.connections = {};
         global.servers = {};
         global.caches = {};
 
     }
-   
+
   }

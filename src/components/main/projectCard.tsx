@@ -35,7 +35,7 @@ export default function ProjectCard({
       rel="noreferrer"
       className="group block h-full"
     >
-      <Card className={`relative flex h-full flex-col overflow-hidden rounded-2xl border border-black/10 bg-linear-to-b shadow-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:border-primary/40 group-hover:shadow-xl dark:border-white/10 ${featured ? "min-h-80 w-full max-w-3xl from-cyan-50 to-white dark:from-cyan-950/30 dark:to-neutral-900" : "min-h-72 w-88 from-white to-neutral-100 dark:from-neutral-900 dark:to-neutral-800/90"}`}>
+      <Card className={`glass relative flex h-full flex-col overflow-hidden rounded-2xl transition-all duration-300 group-hover:-translate-y-1 group-hover:border-primary/40 group-hover:shadow-xl ${featured ? "min-h-80 w-full max-w-3xl" : "min-h-72 w-88"}`}>
         <div className={`absolute inset-x-0 top-0 ${featured ? "h-1.5" : "h-1"} bg-linear-to-r from-cyan-500/80 via-sky-500/80 to-indigo-500/80`} />
 
         {featured ? (

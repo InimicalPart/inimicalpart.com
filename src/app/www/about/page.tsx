@@ -27,14 +27,14 @@ export async function generateMetadata(): Promise<Metadata> {
           height: 64,
           alt: 'Inimi\'s logo',
         }
-      ],      
+      ],
     }
   }
 }
 
 export default async function About() {
   return <>
-    <div className="mx-auto flex max-w-4xl flex-col rounded-3xl border border-black/10 bg-white/60 px-6 py-8 shadow-lg backdrop-blur-sm dark:border-white/10 dark:bg-black/35 sm:px-10">
+    <div className="mx-auto flex max-w-4xl flex-col rounded-3xl glass px-6 py-8 sm:px-10">
     <h1 className="text-center text-3xl font-bold tracking-tight sm:text-4xl">About Inimi</h1>
     <p className="mt-2 text-center text-sm uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">The Backstory</p>
     <p className="mt-8 text-left text-base leading-8 text-neutral-800 dark:text-neutral-200">

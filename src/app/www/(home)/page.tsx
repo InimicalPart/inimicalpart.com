@@ -34,18 +34,18 @@ export async function generateMetadata(): Promise<Metadata> {
           height: 64,
           alt: 'Inimi\'s logo',
         }
-      ],      
+      ],
     }
   }
 }
- 
+
 
 export default async function Home() {
 
   return <>
       <Confetti/>
       <div className="mx-auto flex max-w-6xl flex-col gap-10">
-        <section className="rounded-3xl border border-black/10 bg-white/65 px-6 py-8 text-center shadow-lg backdrop-blur-sm dark:border-white/10 dark:bg-black/35 sm:px-10">
+        <section className="glass rounded-3xl px-6 py-8 text-center sm:px-10">
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">Hi there! 👋</h1>
           <div className="mt-5 text-lg md:mt-4">
             <div className="flex items-center justify-center flex-col md:flex-row">
@@ -68,7 +68,7 @@ export default async function Home() {
           </p>
         </section>
 
-        <section className="rounded-3xl border border-black/10 bg-white/55 px-4 py-6 shadow-lg backdrop-blur-sm dark:border-white/10 dark:bg-black/30 sm:px-6">
+        <section className="glass rounded-3xl px-4 py-6 sm:px-6">
           <p className="text-center text-sm font-semibold uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">
             Latest Projects
           </p>

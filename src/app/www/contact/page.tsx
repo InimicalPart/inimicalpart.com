@@ -37,7 +37,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Contact() {
   return (
     <>
-      <div className="mx-auto flex max-w-3xl flex-col rounded-3xl border border-black/10 bg-white/60 px-6 py-8 text-center shadow-lg backdrop-blur-sm dark:border-white/10 dark:bg-black/35 sm:px-10">
+      <div className="mx-auto flex max-w-3xl flex-col rounded-3xl glass px-6 py-8 text-center sm:px-10">
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Contact</h1>
         <p className="mt-2 text-sm uppercase tracking-[0.18em] text-neutral-500 dark:text-neutral-400">Let&apos;s build something great</p>
 

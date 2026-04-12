@@ -34,7 +34,7 @@ export default function IRISGrant({ searchParams }: CodePageProps) {
     }
 
     return (
-        <div className="mx-auto flex max-w-3xl flex-col items-center justify-center rounded-3xl border border-black/10 bg-white/60 px-6 py-10 text-center shadow-lg backdrop-blur-sm dark:border-white/10 dark:bg-black/35 sm:px-10">
+        <div className="mx-auto flex max-w-3xl flex-col items-center justify-center rounded-3xl glass px-6 py-10 text-center sm:px-10">
             <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">
                 {app ? `${app} ` : ""}Authorization
             </h1>
