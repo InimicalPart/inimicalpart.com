@@ -7,6 +7,7 @@ import { link as linkStyles } from "@nextui-org/theme";
 import clsx from "clsx";
 import { ThemeSwitch } from "./theme-switch";
 import { usePathname } from "next/navigation";
+import InimiLogo from "./icons/inimi";
 
 export default function InimiNavbar({
   noItems = false
@@ -105,7 +106,7 @@ export default function InimiNavbar({
 
 
     return (
-        <Navbar position="static" isBordered className="bg-[#FAF8F4]/80 dark:bg-[#0a0a0a]/80 backdrop-blur-md border-neutral-200/40 dark:border-neutral-800/40" onMenuOpenChange={noItems ? undefined : setIsMenuOpen}>
+        <Navbar position="static" isBordered className="border-neutral-200/40 dark:border-neutral-800/40" style={{ backdropFilter: "blur(20px) saturate(1.8)", WebkitBackdropFilter: "blur(20px) saturate(1.8)", background: "rgba(250,248,244,0.6)", boxShadow: "0 4px 30px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.2)" }} onMenuOpenChange={noItems ? undefined : setIsMenuOpen}>
       <NavbarContent>
       <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}

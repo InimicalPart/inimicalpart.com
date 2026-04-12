@@ -2,21 +2,10 @@ import "@/styles/globals.css";
 import { Viewport } from "next";
 import { Providers } from "@/components/providers";
 import InimiNavbar from "@/components/navbar";
-import { Playfair_Display } from "next/font/google";
 
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-playfair",
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["300", "400", "500", "600"],
-  variable: "--font-inter",
-});
+// Fonts loaded via CSS @import in globals.css for resilience
+const playfair = { variable: "--font-playfair" };
+const inter = { variable: "--font-inter" };
 
 export const viewport: Viewport = {
 	themeColor: [
@@ -35,7 +24,7 @@ export default function RootLayout({
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<head />
-			<body className={`${playfair.variable} ${inter.variable} dark:bg-[#0a0a0a] bg-[#FAF8F4] font-sans antialiased`}>
+			<body className={`${playfair.variable} ${inter.variable} font-sans antialiased`}>
 				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
 					<div className="relative flex flex-col min-h-screen">
 						<InimiNavbar/>

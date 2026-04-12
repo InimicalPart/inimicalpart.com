@@ -9,6 +9,7 @@ import timezone from 'dayjs/plugin/timezone'
 dayjs.extend(utc);
 dayjs.extend(timezone);
 import { chooseArticle } from "@/utils/misc";
+import LiquidGlassHero from "@/components/main/liquid-glass-hero";
 
 export const revalidate = 3600
 
@@ -62,10 +63,12 @@ export default async function Home() {
 
   return <>
       <Confetti/>
-      <div className="text-center -mt-2 flex flex-col">
+      <div className="text-center -mt-2 flex flex-col relative">
+        {/* decorative liquid glass orb */}
+        <LiquidGlassHero />
 
         {/* editorial headline */}
-        <div className="flex flex-col items-center mb-10">
+        <div className="flex flex-col items-center mb-10 relative z-10">
           <span className="text-[0.55rem] uppercase tracking-[0.5em] text-neutral-400 dark:text-neutral-500 mb-4 font-medium">
             inimicalpart.com
           </span>
@@ -77,11 +80,21 @@ export default async function Home() {
           </p>
         </div>
 
-        {/* age counter - editorial spotlight */}
-        <div className="flex flex-col items-center mb-6">
-          <div className="bg-neutral-100/80 dark:bg-neutral-800/50 backdrop-blur-sm rounded-2xl px-10 py-6 border border-neutral-200/60 dark:border-neutral-700/40">
+        {/* age counter - liquid glass spotlight */}
+        <div className="flex flex-col items-center mb-6 relative z-10">
+          <div
+            className="rounded-2xl px-10 py-6"
+            style={{
+              backdropFilter: "blur(16px) saturate(1.8)",
+              WebkitBackdropFilter: "blur(16px) saturate(1.8)",
+              background: "rgba(255,255,255,0.08)",
+              border: "1px solid rgba(255,255,255,0.18)",
+              boxShadow:
+                "0 8px 32px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.15)",
+            }}
+          >
             <div className="text-neutral-500 dark:text-neutral-400 text-[0.6rem] uppercase tracking-[0.4em] mb-2 font-medium">
-              time alive
+              years old
             </div>
             <Tooltip showArrow content={<RealtimeYears cutAt={12} />} placement="bottom" closeDelay={100} delay={0}>
               <div className="inline-flex cursor-default">

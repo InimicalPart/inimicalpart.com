@@ -1,3 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --glass-bg: linear-gradient(135deg, #FAF8F4 0%, #f0ece4 25%, #f5f0e8 50%, #e8e4dc 75%, #FAF8F4 100%);
+}
+
+.dark {
+  --glass-bg: linear-gradient(135deg, #0a0a0a 0%, #111115 25%, #0e0e12 50%, #12121a 75%, #0a0a0a 100%);
+}
+
+body {
+  background: var(--glass-bg);
+  background-attachment: fixed;
+}

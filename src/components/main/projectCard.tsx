@@ -16,7 +16,18 @@ export default function ProjectCard({
     lastUpdated?: Date
 }) {
     return (
-          <Card className="w-[350px] h-[300px] bg-[#f5f3ee]/90 dark:bg-neutral-900/80 border border-neutral-200/60 dark:border-neutral-800/40 backdrop-blur-sm" isPressable onPress={() => window.open(`https://github.com/${owner}/${repo}`, "_blank")}>
+          <Card
+            className="w-[350px] h-[300px] border border-white/[0.18] dark:border-white/[0.12]"
+            style={{
+              backdropFilter: "blur(16px) saturate(1.8)",
+              WebkitBackdropFilter: "blur(16px) saturate(1.8)",
+              background: "rgba(255,255,255,0.06)",
+              boxShadow:
+                "0 8px 32px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.15)",
+            }}
+            isPressable
+            onPress={() => window.open(`https://github.com/${owner}/${repo}`, "_blank")}
+          >
           <CardHeader className="flex flex-row">
               <GithubIcon/>
               <Tooltip showArrow delay={0} closeDelay={100} content={`https://github.com/${owner}/${repo}`}>
