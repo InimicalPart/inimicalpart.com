@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState, useMemo, type ReactNode } from "react"
+import { useEffect, useState, useMemo, type ReactNode, type CSSProperties } from "react"
 
 /** Lens profile types for refraction simulation */
 export type LensType = "convex" | "concave" | "lip"
@@ -18,7 +18,7 @@ interface LiquidGlassProps {
   /** Extra class names */
   className?: string
   /** Inline styles */
-  style?: React.CSSProperties
+  style?: CSSProperties
 }
 
 // ─── displacement-map generator ────────────────────────────────────────────
@@ -101,11 +101,10 @@ export default function LiquidGlass({
   style = {},
 }: LiquidGlassProps) {
   const filterId = useMemo(
-    () => `liquid-glass-${++filterId}-${++filterCounter}`,
+    () => `liquid-glass-${++filterCounter}`,
     []
   )
   const [mapUrl, setMapUrl] = useState<string | null>(null)
-  const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (typeof window === "undefined" || intensity <= 0) return
@@ -157,7 +156,6 @@ export default function LiquidGlass({
 
       {/* The glass element */}
       <div
-        ref={ref}
         className={className}
         style={{
           ...style,

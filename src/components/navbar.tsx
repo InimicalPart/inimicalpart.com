@@ -106,7 +106,7 @@ export default function InimiNavbar({
 
 
     return (
-        <Navbar position="static" isBordered className="border-neutral-200/40 dark:border-neutral-800/40" style={{ backdropFilter: "blur(20px) saturate(1.8)", WebkitBackdropFilter: "blur(20px) saturate(1.8)", background: "rgba(250,248,244,0.6)", boxShadow: "0 4px 30px rgba(0,0,0,0.05), inset 0 1px 0 rgba(255,255,255,0.2)" }} onMenuOpenChange={noItems ? undefined : setIsMenuOpen}>
+        <Navbar position="static" isBordered className="border-neutral-200/40 dark:border-neutral-800/40 navbar-glass" onMenuOpenChange={noItems ? undefined : setIsMenuOpen}>
       <NavbarContent>
       <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}

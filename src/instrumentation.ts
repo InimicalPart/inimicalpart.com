@@ -7,7 +7,7 @@ export async function register() {
         const botConfPath = process.platform == "win32" ? process.env.USERPROFILE + "\\Documents\\inimicalpart.com\\3p-botConfig.jsonc" : "/srv/inimicalpart.com/3p-botConfig.jsonc"
 
         if (!fs.existsSync(botConfPath)) {
-            console.log("Bot config not found at", botConfPath, "- skipping (dev mode)");
+            console.log("Bot config not found at", botConfPath, "- skipping");
             global.botConfig = {};
             global.connections = {};
             global.servers = {};
