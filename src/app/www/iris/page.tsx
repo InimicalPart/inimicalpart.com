@@ -8,6 +8,7 @@ import { Metadata } from "next";
 import IRISGrantCode from "@/components/iris-grant";
 import { Suspense } from "react";
 import { Skeleton } from "@nextui-org/react";
+import GlassOrbs from "@/components/main/glass-orbs";
 
 export async function generateMetadata(): Promise<Metadata> {
     const years = dayjs().diff(dayjs.utc(1163623320000), "year", true).toString().split(".")[0]
@@ -39,9 +40,10 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function IRISGrant() {
 
     return (
-        <div className="flex flex-col items-center justify-center max-w-xl mx-auto">
+        <div className="flex flex-col items-center justify-center max-w-xl mx-auto relative">
+            <GlassOrbs />
             {/* editorial header */}
-            <div className="flex flex-col items-center mb-10">
+            <div className="flex flex-col items-center mb-10 relative z-10">
                 <span className="text-[0.55rem] uppercase tracking-[0.5em] text-neutral-400 dark:text-neutral-500 mb-4 font-medium">
                     authorization
                 </span>
@@ -50,7 +52,14 @@ export default function IRISGrant() {
                 </h1>
             </div>
 
-            <div className="bg-neutral-100/80 dark:bg-neutral-800/50 backdrop-blur-sm rounded-2xl px-10 py-8 border border-neutral-200/60 dark:border-neutral-700/40 text-center w-full">
+            <div className="rounded-2xl px-10 py-8 text-center w-full relative z-10"
+                 style={{
+                   backdropFilter: "blur(16px) saturate(1.8)",
+                   WebkitBackdropFilter: "blur(16px) saturate(1.8)",
+                   background: "rgba(255,255,255,0.06)",
+                   border: "1px solid rgba(255,255,255,0.18)",
+                   boxShadow: "0 8px 32px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.15)",
+                 }}>
                 <p className="text-lg font-semibold text-neutral-900 dark:text-neutral-100 mb-2">
                     Thank you for authorizing IRIS!
                 </p>

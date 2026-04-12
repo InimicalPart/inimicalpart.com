@@ -1,10 +1,12 @@
 import { Divider } from "@nextui-org/react"
+import GlassOrbs from "@/components/main/glass-orbs"
 
 export default function IRISToS() {
     return (<>
-        <div className="text-center -mt-2 flex flex-col max-w-2xl mx-auto">
+        <div className="text-center -mt-2 flex flex-col max-w-2xl mx-auto relative">
+            <GlassOrbs />
             {/* editorial header */}
-            <div className="flex flex-col items-center mb-10">
+            <div className="flex flex-col items-center mb-10 relative z-10">
                 <span className="text-[0.55rem] uppercase tracking-[0.5em] text-neutral-400 dark:text-neutral-500 mb-4 font-medium">
                     iris documentation
                 </span>

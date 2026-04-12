@@ -1,4 +1,5 @@
 import { Divider } from "@nextui-org/react"
+import GlassOrbs from "@/components/main/glass-orbs"
 
 function PrivacySection({ num, title, children }: { num: string, title: string, children: React.ReactNode }) {
   return (
@@ -14,9 +15,10 @@ function PrivacySection({ num, title, children }: { num: string, title: string, 
 }
 
 export default function IRISPrivacy() {
-    return <div className="max-w-2xl mx-auto">
+    return <div className="max-w-2xl mx-auto relative">
+        <GlassOrbs />
         {/* editorial header */}
-        <div className="flex flex-col items-center mb-12">
+        <div className="flex flex-col items-center mb-12 relative z-10">
             <span className="text-[0.55rem] uppercase tracking-[0.5em] text-neutral-400 dark:text-neutral-500 mb-4 font-medium">
                 IRIS
             </span>

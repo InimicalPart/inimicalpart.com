@@ -6,6 +6,7 @@ import timezone from 'dayjs/plugin/timezone'
 dayjs.extend(utc);
 dayjs.extend(timezone);
 import { Metadata } from "next";
+import GlassOrbs from "@/components/main/glass-orbs";
 
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -37,9 +38,10 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Contact() {
   return (
     <>
-      <div className="text-center -mt-2 flex flex-col max-w-xl mx-auto">
+      <div className="text-center -mt-2 flex flex-col max-w-xl mx-auto relative">
+        <GlassOrbs />
         {/* editorial header */}
-        <div className="flex flex-col items-center mb-10">
+        <div className="flex flex-col items-center mb-10 relative z-10">
           <span className="text-[0.55rem] uppercase tracking-[0.5em] text-neutral-400 dark:text-neutral-500 mb-4 font-medium">
             get in touch
           </span>
@@ -48,7 +50,14 @@ export default async function Contact() {
           </h1>
         </div>
 
-        <div className="bg-neutral-100/80 dark:bg-neutral-800/50 backdrop-blur-sm rounded-2xl px-10 py-8 border border-neutral-200/60 dark:border-neutral-700/40">
+        <div className="rounded-2xl px-10 py-8 relative z-10"
+             style={{
+               backdropFilter: "blur(16px) saturate(1.8)",
+               WebkitBackdropFilter: "blur(16px) saturate(1.8)",
+               background: "rgba(255,255,255,0.06)",
+               border: "1px solid rgba(255,255,255,0.18)",
+               boxShadow: "0 8px 32px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.15)",
+             }}>
           <div className="flex flex-col items-center gap-6">
             <div className="flex flex-col items-center">
               <span className="text-[0.6rem] uppercase tracking-[0.3em] text-neutral-400 dark:text-neutral-500 mb-1 font-medium">

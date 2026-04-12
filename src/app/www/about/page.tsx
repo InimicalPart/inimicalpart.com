@@ -5,6 +5,7 @@ import timezone from 'dayjs/plugin/timezone'
 dayjs.extend(utc);
 dayjs.extend(timezone);
 import { Metadata } from "next"
+import GlassOrbs from "@/components/main/glass-orbs"
 
 export async function generateMetadata(): Promise<Metadata> {
   const years = dayjs().diff(dayjs.utc(1163623320000), "year", true).toString().split(".")[0]
@@ -34,10 +35,11 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function About() {
   return <>
-    <div className="text-center -mt-2 flex flex-col max-w-2xl mx-auto">
+    <div className="text-center -mt-2 flex flex-col max-w-2xl mx-auto relative">
+      <GlassOrbs />
 
       {/* editorial header */}
-      <div className="flex flex-col items-center mb-10">
+      <div className="flex flex-col items-center mb-10 relative z-10">
         <span className="text-[0.55rem] uppercase tracking-[0.5em] text-neutral-400 dark:text-neutral-500 mb-4 font-medium">
           about
         </span>
@@ -46,9 +48,10 @@ export default async function About() {
         </h1>
       </div>
 
-      <div className="space-y-5 text-left text-neutral-700 dark:text-neutral-300 leading-relaxed">
+      <div className="space-y-5 text-left text-neutral-700 dark:text-neutral-300 leading-relaxed relative z-10">
 
-        <p className="font-semibold text-neutral-900 dark:text-neutral-100 text-lg pb-2 border-b border-neutral-200/60 dark:border-neutral-700/60">
+        <p className="font-semibold text-neutral-900 dark:text-neutral-100 text-lg pb-2 border-b border-neutral-200/60 dark:border-neutral-700/60"
+           style={{ backdropFilter: "blur(8px) saturate(1.5)", WebkitBackdropFilter: "blur(8px) saturate(1.5)", background: "rgba(255,255,255,0.04)", borderRadius: "12px", padding: "16px 20px", border: "1px solid rgba(255,255,255,0.1)" }}>
           At the young age of 10, Inimi started his journey in the world of programming.
         </p>
 
@@ -96,7 +99,8 @@ export default async function About() {
           Inimi&apos;s passion for programming grew stronger over time, leading him to work on bigger projects that required more time and effort. He was determined to make his projects the best they could be and was willing to put in the necessary time and effort.
         </p>
 
-        <div className="pt-3 pb-4 border-b border-neutral-200/60 dark:border-neutral-700/60">
+        <div className="pt-3 pb-4"
+             style={{ backdropFilter: "blur(8px) saturate(1.5)", WebkitBackdropFilter: "blur(8px) saturate(1.5)", background: "rgba(255,255,255,0.04)", borderRadius: "12px", padding: "16px 20px", border: "1px solid rgba(255,255,255,0.1)" }}>
           <p className="text-neutral-500 dark:text-neutral-400 italic">
             Until we come to the present day, Inimi is now a full-stack developer with a passion for creating software that is both unique and innovative. He is always looking for new challenges to overcome and new things to learn.
           </p>
