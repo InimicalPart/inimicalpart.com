@@ -19,7 +19,7 @@
     "dayjs": "^1.11.20",
     "eslint-config-next": "16.2.3",
     "moment-timezone": "^0.5.48",
-    "next": "16.2.3",
+    "next": "16.2.6",
     "next-ws": "^2.2.4",
     "postcss": "^8.5.9",
     "pretty-ms": "^9.3.0",
