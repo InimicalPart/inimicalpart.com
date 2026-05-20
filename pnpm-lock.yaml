@@ -43,7 +43,7 @@ importers:
         version: 16.2.3(@babel/core@7.29.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       next-ws:
         specifier: ^2.2.4
-        version: 2.2.4(next@16.2.3(@babel/core@7.29.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react@19.2.5)(ws@8.20.0)
+        version: 2.2.4(next@16.2.3(@babel/core@7.29.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react@19.2.5)(ws@8.20.1)
       postcss:
         specifier: ^8.5.9
         version: 8.5.9
@@ -63,8 +63,8 @@ importers:
         specifier: ^4.10.0
         version: 4.10.0
       ws:
-        specifier: ^8.20.0
-        version: 8.20.0
+        specifier: ^8.20.1
+        version: 8.20.1
     devDependencies:
       '@tailwindcss/postcss':
         specifier: ^4.2.2
@@ -3137,8 +3137,8 @@ packages:
     resolution: {integrity: sha512-+QU2zd6OTD8XWIJCbffaiQeH9U73qIqafo1x6V1snCWYGJf6cVE0cDR4D8xRzcEnfI21IFrUPzPGtcPf8AC+Rw==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
 
-  ws@8.20.0:
-    resolution: {integrity: sha512-sAt8BhgNbzCtgGbt2OxmpuryO63ZoDk/sqaB/znQm94T4fCEsy/yV+7CdC1kJhOU9lboAEU7R3kquuycDoibVA==}
+  ws@8.20.1:
+    resolution: {integrity: sha512-It4dO0K5v//JtTXuPkfEOaI3uUN87iYPnqo/ZzqCoG3g8uhA66QUMs/SrM0YK7/NAu+r4LMh/9dq2A7k+rHs+w==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
       bufferutil: ^4.0.1
@@ -6249,14 +6249,14 @@ snapshots:
 
   neo-async@2.6.2: {}
 
-  next-ws@2.2.4(next@16.2.3(@babel/core@7.29.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react@19.2.5)(ws@8.20.0):
+  next-ws@2.2.4(next@16.2.3(@babel/core@7.29.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5))(react@19.2.5)(ws@8.20.1):
     dependencies:
       jscodeshift: 17.3.0
       minimist: 1.2.8
       next: 16.2.3(@babel/core@7.29.0)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
       react: 19.2.5
       semver: 7.7.4
-      ws: 8.20.0
+      ws: 8.20.1
     transitivePeerDependencies:
       - '@babel/preset-env'
       - supports-color
@@ -7034,7 +7034,7 @@ snapshots:
       imurmurhash: 0.1.4
       signal-exit: 4.1.0
 
-  ws@8.20.0: {}
+  ws@8.20.1: {}
 
   yallist@3.1.1: {}
 
